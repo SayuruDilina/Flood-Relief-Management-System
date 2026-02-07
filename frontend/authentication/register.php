@@ -1,93 +1,91 @@
-<?php include '../common/header.php'; 
-?>
+<?php include '../common/header.php'; ?>
 
-<body>
-
-  <div class="content-card">
+<div class="content-card">
     <div class="register-card">
       <div class="text-center mb-5">
         <h1 class="brand-title">Aqua<span class=" mb-3 brand-highlight">Relief</span></h1>
         <p class="text-muted">Create your account to request relief and assistance.</p>
       </div>
 
-      <form action="#" method="POST">
+      <form id="registrationForm">
         <div class="section-divider">Personal Information</div>
         <div class="row g-3 mb-4">
           <div class="col-md-8">
             <label class="form-label">Full Name</label>
-            <input type="text" class="form-control" placeholder="Enter your full name">
+            <input id="fullname" type="text" class="form-control" placeholder="Enter your full name" required>
           </div>
           <div class="col-md-4">
             <label class="form-label">NIC Number</label>
-            <input type="text" class="form-control" placeholder="e.g. 19XXXXXXXXXX">
+            <input id="NIC" type="text" class="form-control" placeholder="e.g. 19XXXXXXXXXX" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">Date of Birth</label>
-            <input type="date" class="form-control">
+            <input id="DOB" type="date" class="form-control" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">Gender</label>
-            <select class="form-select">
-              <option selected disabled>Select Gender</option>
+            <select id="gender" class="form-select" required>
+              <option value="" selected disabled>Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
           </div>
+          
           <div class="section-divider">Permanent Address</div>
           <div class="row g-3 mb-4">
             <div class="col-12">
-              <label class="form-label">Street Adress</label>
-              <input type="text" class="form-control" placeholder="House No, Street Name">
+              <label class="form-label">Street Address</label>
+              <input id="street_address" type="text" class="form-control" placeholder="House No, Street Name" required>
             </div>
             <div class="col-md-4">
               <label class="form-label">City</label>
-              <input type="text" class="form-control" placeholder="City">
+              <input id="city" type="text" class="form-control" placeholder="City" required>
             </div>
             <div class="col-md-4">
               <label class="form-label">District</label>
-              <select class="form-select">
-                <option selected disabled>Select District</option>
-                <option>Colombo</option>
-                <option>Gampaha</option>
-                <option>Kalutara</option>
-                <option>Kandy</option>
-                <option>Matale</option>
-                <option>Nuwara Eliya</option>
-                <option>Galle</option>
-                <option>Matara</option>
-                <option>Hambantota</option>
-                <option>Jaffna</option>
-                <option>Kilinochchi</option>
-                <option>Mannar</option>
-                <option>Vavuniya</option>
-                <option>Mullaitivu </option>
-                <option>Anuradhapura</option>
-                <option>Polonnaruwa</option>
-                <option>Kurunegala</option>
-                <option>Puttalam</option>
-                <option>Batticaloa</option>
-                <option>Ampara</option>
-                <option>Trincomalee </option>
-                <option>Badulla</option>
-                <option>Moneragala </option>
-                <option>Ratnapura</option>
-                <option>Kegalle </option>
+              <select id="district" class="form-select" required>
+                <option value="" selected disabled>Select District</option>
+                <option value="Colombo">Colombo</option>
+                <option value="Gampaha">Gampaha</option>
+                <option value="Kalutara">Kalutara</option>
+                <option value="Kandy">Kandy</option>
+                <option value="Matale">Matale</option>
+                <option value="Nuwara Eliya">Nuwara Eliya</option>
+                <option value="Galle">Galle</option>
+                <option value="Matara">Matara</option>
+                <option value="Hambantota">Hambantota</option>
+                <option value="Jaffna">Jaffna</option>
+                <option value="Kilinochchi">Kilinochchi</option>
+                <option value="Mannar">Mannar</option>
+                <option value="Vavuniya">Vavuniya</option>
+                <option value="Mullaitivu">Mullaitivu</option>
+                <option value="Anuradhapura">Anuradhapura</option>
+                <option value="Polonnaruwa">Polonnaruwa</option>
+                <option value="Kurunegala">Kurunegala</option>
+                <option value="Puttalam">Puttalam</option>
+                <option value="Batticaloa">Batticaloa</option>
+                <option value="Ampara">Ampara</option>
+                <option value="Trincomalee">Trincomalee</option>
+                <option value="Badulla">Badulla</option>
+                <option value="Moneragala">Moneragala</option>
+                <option value="Ratnapura">Ratnapura</option>
+                <option value="Kegalle">Kegalle</option>
               </select>
             </div>
             <div class="col-md-4">
               <label class="form-label">Province</label>
-              <select class="form-select">
-                <option selected disabled>Select Province</option>
-                <option>Western</option>
-                <option>Central</option>
-                <option>Southern</option>
-                <option>Northern</option>
-                <option>Eastern</option>
-                <option>North Western</option>
-                <option>North Central</option>
-                <option>Uva</option>
-                <option>Sabaragamuwa</option>
+              <select id="province" class="form-select" required>
+                <option value="" selected disabled>Select Province</option>
+                <option value="Western">Western</option>
+                <option value="Central">Central</option>
+                <option value="Southern">Southern</option>
+                <option value="Northern">Northern</option>
+                <option value="Eastern">Eastern</option>
+                <option value="North Western">North Western</option>
+                <option value="North Central">North Central</option>
+                <option value="Uva">Uva</option>
+                <option value="Sabaragamuwa">Sabaragamuwa</option>
               </select>
             </div>
           </div>
@@ -96,29 +94,29 @@
         <div class="section-divider">Account Credentials</div>
         <div class="row g-3 mb-5">
           <div class="col-md-6">
-            <label class="form-label">Email Adress</label>
-            <input type="email" class="form-control" placeholder="email@example.com">
+            <label class="form-label">Email Address</label>
+            <input id="email" type="email" class="form-control" placeholder="email@example.com" required>
           </div>
           <div class="col-md-6 mb-3">
             <label class="form-label">Contact Number</label>
-            <input type="tel" class="form-control" placeholder="e.g. 07XXXXXXXX" pattern="[0-9]{10}" required>
+            <input id="contact_number" type="tel" class="form-control" placeholder="e.g. 07XXXXXXXX" pattern="[0-9]{10}" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">User Name</label>
-            <input type="text" class="form-control" placeholder="Choose a username">
+            <input id="username" type="text" class="form-control" placeholder="Choose a username" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" placeholder="••••••••">
+            <input id="password" type="password" class="form-control" placeholder="••••••••" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" placeholder="••••••••">
+            <input id="confirm_password" type="password" class="form-control" placeholder="••••••••" required>
           </div>
         </div>
 
         <div class="text-center">
-          <button type="submit" class="btn btn-aqua px-5">Register Account</button>
+          <button type="button" class="btn btn-aqua px-5" onclick="registerUser()">Register Account</button>
           <p class="mt-4 small">
             Already have an account? <a href="login.php"
               style="color: var(--primary-teal); font-weight: 700; text-decoration: none;">Sign In</a>
@@ -128,5 +126,4 @@
     </div>
   </div>
 
-<?php include '../common/footer.php'; 
-?>
+<?php include '../common/footer.php'; ?>

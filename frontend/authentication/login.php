@@ -13,18 +13,18 @@
       <form>
         <div class="mb-3">
           <label class="form-label fw-semibold">Username</label>
-          <input type="text" class="form-control" placeholder="Enter your username">
+          <input id="username" type="text" class="form-control" placeholder="Enter your username">
         </div>
 
         <div class="mb-4">
           <label class="form-label fw-semibold">Password</label>
-          <input type="password" class="form-control" placeholder="••••••••••">
+          <input id="password" type="password" class="form-control" placeholder="••••••••••">
           <div class="text-end mt-2">
             <a href="forgot-password.html" class="small create-link">Forgot Password?</a>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-aqua w-100 mb-3">Sign In</button>
+        <button onclick="login()" type="button" class="btn btn-aqua w-100 mb-3">Sign In</button>
 
         <div class="text-center mt-3">
           <p class="small text-muted">Impacted by floods? <br>
