@@ -1,7 +1,7 @@
 <?php include '../common/header.php'; 
 ?>
 
-<body>
+<body style="linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/background-img-login.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
 
   <div class="content-card">
     <div class="login-card">

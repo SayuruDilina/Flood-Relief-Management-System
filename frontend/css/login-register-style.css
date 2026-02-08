@@ -14,16 +14,11 @@
 }
 
 body {
+  position: relative;
   margin: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/background-img-login.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   font-family: var(--body-font);
   color: var(--text-dark);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
 }
 
 .brand-title {
@@ -49,12 +44,17 @@ body {
 }
 
 .content-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
   background-color: var(--white);
   border: 3px solid rgba(91, 177, 162, 0.2);
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   padding: 3rem;
-  margin: auto;
 }
 
 .login-card {
