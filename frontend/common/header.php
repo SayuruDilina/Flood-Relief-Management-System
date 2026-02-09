@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/user-flood-relief-styles.css">
-    <link rel="stylesheet" href="../css/view-relief-request.css">
-    <link rel="stylesheet" href="../css/login-register-style.css">
+    <!-- <link rel="stylesheet" href="../css/user-flood-relief-styles.css"> -->
+    <!-- <link rel="stylesheet" href="../css/view-relief-request.css"> -->
+    <link rel="stylesheet" href="../css/total-relief-requests.css">
+    <!-- <link rel="stylesheet" href="../css/login-register-style.css"> -->
     
 </head>
 <body>
