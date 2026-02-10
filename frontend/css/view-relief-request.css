@@ -18,7 +18,7 @@ body {
     font-weight: 700;
 }
 
-.content-card {
+.hn-content-card {
     background:#ffffff;
     padding: 40px;
     border-radius: 12px;
@@ -35,7 +35,7 @@ body {
 }
 
 
-.card-container {
+.hn-card-container {
     display: grid;
     gap: 25px;
 }
@@ -90,9 +90,10 @@ body {
     background-color:#458a7e;
     color:white;
     border: none;
-    padding: 8px 18px;
+    padding: 8px 15px;
     border-radius: 6px;
     cursor: pointer;
+    padding-left: 20px;
 }
 
 .btn-primary:hover {
@@ -107,3 +108,31 @@ body {
     border-radius: 6px;
     cursor: pointer;
 }
+
+.custom-modal-width {
+  max-width: 950px;
+}
+
+.modal-content {
+  border-radius: 18px;
+}
+
+.hn-section-divider {
+  color:#458a7e;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 22px;
+  border-bottom: 2px solid rgba(91, 177, 162, 0.1);
+  padding-bottom: 5px;
+  margin: 25px 0 15px 0;
+}
+
+.custom-header {
+  background-color: #458a7e;
+  color: white;
+}
+
+.section-title{
+    color: #458a7e;
+}
+
