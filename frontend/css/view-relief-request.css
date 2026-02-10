@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Public+Sans&display=swap");
+body {
+    margin: 0;
+    font-family: 'Public Sans', sans-serif;
+    background-color: #f4f9f8;
+}
+
+.navbar {
+    background-color:#ffffff;
+    padding: 15px 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color:#5bb1a2;;
+    font-weight: 700;
+}
+
+.hn-content-card {
+    background:#ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-top: 6px solid #458a7e;
+    margin: 40px;
+}
+
+
+.page-title {
+    font-family: 'Montserrat', sans-serif;
+    color:#458a7e;
+    margin-bottom: 30px;
+}
+
+
+.hn-card-container {
+    display: grid;
+    gap: 25px;
+}
+
+.relief-card {
+    background-color:#ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.relief-type {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color:#458a7e;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.high {
+    color:#e74c3c;
+}
+
+.status.medium {
+    color:#f1c40f;
+}
+
+.status.low {
+    color:#27ae60;
+}
+
+.card-body p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color:#458a7e;
+    color:white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+.btn-primary:hover {
+    background-color:#458a7e;
+}
+
+.btn-danger {
+    background-color:#e74c3c;
+    color:white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.custom-modal-width {
+  max-width: 950px;
+}
+
+.modal-content {
+  border-radius: 18px;
+}
+
+.hn-section-divider {
+  color:#458a7e;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 22px;
+  border-bottom: 2px solid rgba(91, 177, 162, 0.1);
+  padding-bottom: 5px;
+  margin: 25px 0 15px 0;
+}
+
+.custom-header {
+  background-color: #458a7e;
+  color: white;
+}
+
+.section-title{
+    color: #458a7e;
+}
+
