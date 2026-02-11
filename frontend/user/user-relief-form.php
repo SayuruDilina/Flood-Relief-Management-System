@@ -1,13 +1,11 @@
   <?php
-  include '../common/header.php';
+  include 
+    '../common/header.php';
   ?>
 
-  <div class="navbar">
-    <div class="logo">
-      -AQUARELIEF-
-    </div>
-  </div>
-
+  <?php include './user-navbar.php';
+  ?>
+  
   <div class="card" style="border-radius: 15px; box-shadow: 0 10px 5px var(--success); ">
     <h1 class="av-title">Flood Relief Request</h1>
     <hr class="av-dividerr">
@@ -111,7 +109,11 @@
 
   </div>
   </div>
-  <?php include '../common/footer.php'; ?>
+  
+  <?php 
+    include '../common/footer.php';
+    include './user-footer.php';
+   ?>
 
 
 
