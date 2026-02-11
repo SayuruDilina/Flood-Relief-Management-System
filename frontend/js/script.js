@@ -1,5 +1,7 @@
+console.log("test");
 function registerUser() {
     console.log("function reached");
+console.log("test");
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
@@ -101,8 +103,12 @@ const payload={
 function createReliefRequest(){
     const user_id=1;
     const type_of_relief = document.getElementById("type_of_relief").value.trim();
+    console.log(type_of_relief);
     const devisional_secretariat= document.getElementById("devisional_secretariat").value.trim();
-    const gn_devision = document.getElementById("gn_devision").value.trim();
+    const gn_devision = document.getElementById("gn_devision").value;
+  
+    console.log(gn_devision);
+    
     const contact_person_name = document.getElementById("contact_person_name").value.trim();
     const contact_number = document.getElementById("contact_number").value.trim();
     const address = document.getElementById("address").value.trim();
