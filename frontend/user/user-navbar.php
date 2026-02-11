@@ -1,11 +1,8 @@
-<?php include '../common/header.php'; 
-?>
 
-<body>
     <nav class="navbar navbar-expand-lg navbar-aqua sticky-top">
         <div class="container">
             <div class="brand-section">
-                <a href="#"><img src="../images/aquarelief-logo.png" alt="AquaRelief Logo" class="navbar-logo me-2">
+                <a href="./home.php"><img src="../images/aquarelief-logo.png" alt="AquaRelief Logo" class="navbar-logo me-2">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aquaNavbar">
@@ -14,27 +11,21 @@
             <div class="collapse navbar-collapse" id="aquaNavbar">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="./home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">New Request</a>
+                        <a class="nav-link" href="./user-relief-form.php">New Request</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Requests</a>
+                        <a class="nav-link" href="./view-relief-request.php">My Requests</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-logout" href="#">Logout</a>
+                        <a class="nav-link btn-signin" href="../authentication/login.php">Sign In</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-
-
-
-
-<?php include '../common/footer.php';

@@ -1,6 +1,6 @@
-          <nav class="navbar">
-        <div class="logo">-AQUARELIEF-</div>
-    </nav>
+  
+  <?php include './user-navbar.php';
+  ?>
 
     <div class="hn-content-card">
 
@@ -206,6 +206,9 @@
         </div>
 
     </div>
+
+  <?php include './user-footer.php';
+   ?>
 
 <script>
     const exampleModal = document.getElementById('exampleModal')

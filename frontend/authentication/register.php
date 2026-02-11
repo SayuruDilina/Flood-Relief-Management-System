@@ -120,7 +120,7 @@
           <div class="text-center">
             <button type="button" class="btn btn-aqua px-5" onclick="registerUser()">Register Account</button>
             <p class="mt-4 small">
-              Already have an account? <a href="login.php"
+              Already have an account? <a href="./login.php"
                 style="color: var(--primary-teal); font-weight: 700; text-decoration: none;">Sign In</a>
             </p>
           </div>
