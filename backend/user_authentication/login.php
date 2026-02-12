@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
 include '../config/database_con.php';
+session_start();
 if($_SERVER['REQUEST_METHOD']=='POST'){
 $data = json_decode(file_get_contents("php://input"), true);
     $username=$data['username'];
@@ -40,7 +41,7 @@ $data = json_decode(file_get_contents("php://input"), true);
         exit();
     }
 
-
+ $_SESSION["user_id"] =  $user['user_id'];
     echo json_encode([
         "status" => "success",
         "message" => "Login successful",
@@ -48,6 +49,7 @@ $data = json_decode(file_get_contents("php://input"), true);
         "username" => $user['username'],
         "role" => $user['role']
     ]);
+
     exit();
 
 

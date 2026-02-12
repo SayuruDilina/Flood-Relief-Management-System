@@ -2,17 +2,40 @@
   <?php include './user-navbar.php';
   ?>
 
+  <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+ <?php if(!isset($_SESSION["user_id"])) { ?>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 80vh; font-family: sans-serif;">
+    
+    <h1 style="color: #dc3545; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px;">
+        ⚠️ LOGIN FIRST
+    </h1>
+
+    <video 
+        src="../images/not-log-error-vid.mp4" 
+        autoplay 
+        muted 
+        loop 
+        style="width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    </video>
+
+</div>
+<?php } else { ?>
     <div class="hn-content-card">
 
         <h2 class="page-title">My Relief Requests</h2>
 
-        <div class="hn-card-container">
-
+        <div  class="hn-card-container">
+<div id="reliefRContainer">
             <div class="relief-card">
                 <div class="card-header">
                     <span class="relief-type">Food</span>
-                    <span class="status high">High</span>
-                </div>
+                     <span class="status">Pending</span>
+                    <span  id="flood_level" class="status high">High</span>
+                 </div>
 
                 <div class="card-body">
                     <p>District: Colombo</p>
@@ -29,6 +52,14 @@
         data-bs-target="#editModal">
   Edit
 </button>
+
+<button type="button" class="btn btn-danger rounded-pill px-5"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteModal">
+  Delete
+</button>
+
+</div>
 
 <div class="modal fade" id="editModal" tabindex="-1"
      aria-labelledby="editModalLabel" aria-hidden="true">
@@ -156,11 +187,6 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-danger rounded-pill px-5"
-        data-bs-toggle="modal"
-        data-bs-target="#deleteModal">
-  Delete
-</button>
 
 <div class="modal fade" id="deleteModal" tabindex="-1"
      aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -207,6 +233,8 @@
 
     </div>
 
+    
+<?php } ?>
   <?php include './user-footer.php';
    ?>
 

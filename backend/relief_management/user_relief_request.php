@@ -1,7 +1,15 @@
   <?php
   header('Content-Type: application/json');
   include '../config/database_con.php';
+  session_start();
   if($_SERVER['REQUEST_METHOD']=='POST'){
+  if (!isset($_SESSION["user_id"])) {
+    http_response_code(401);
+    echo json_encode(["status"=>"error","message"=>"Please login"]);
+    exit();
+  }
+  $user_id = $_SESSION["user_id"];
+
      $data = json_decode(file_get_contents("php://input"), true);
       $type_of_relief=$data['type_of_relief'];
       $district=$data['district'];
@@ -13,9 +21,9 @@
       $num_of_family_members=$data['num_of_family_members'];
       $flood_level=$data['flood_level'];
       $description=$data['description'];
-      $user_id=$data['user_id'];
+    //  $user_id=$data['user_id'];
     
-      if(empty($user_id) || empty($type_of_relief) || empty($devisional_secretariat) || empty($contact_number) || 
+      if(empty($type_of_relief) || empty($devisional_secretariat) || empty($contact_number) || 
         empty($num_of_family_members)  || empty($flood_level) || empty($description) || empty($address)
       ){
          echo json_encode([
@@ -52,6 +60,12 @@
   }
 //UPDATE USER SPECIFIC RELIEF REQUEST
   if($_SERVER['REQUEST_METHOD']=='PUT'){
+    if (!isset($_SESSION["user_id"])) {
+    http_response_code(401);
+    echo json_encode(["status"=>"error","message"=>"Please login"]);
+    exit();
+  }
+  $user_id = $_SESSION["user_id"];
       $data = json_decode(file_get_contents("php://input"), true);
       $relief_id=$data['relief_id'];
       $type_of_relief=$data['type_of_relief'];
@@ -64,7 +78,7 @@
       $num_of_family_members=$data['num_of_family_members'];
       $flood_level=$data['flood_level'];
       $description=$data['description'];
-      $user_id=$data['user_id'];
+     // $user_id=$data['user_id'];
 
 
     $sql="UPDATE relief_requests SET type_of_relief='$type_of_relief',
@@ -97,15 +111,14 @@
 //GET USER SPECIFIC RELIEF REQUEST 
   if($_SERVER['REQUEST_METHOD']=='GET'){
 
-      if (!isset($_GET['user_id']) || $_GET['user_id'] === '') {
-        echo json_encode([
-            "status" => "error",
-            "message" => "user_id is required"
-        ]);
-        exit();
-    }
+    if (!isset($_SESSION["user_id"])) {
+    http_response_code(401);
+    echo json_encode(["status"=>"error","message"=>"Please login"]);
+    exit();
+  }
+  $user_id = $_SESSION["user_id"];
 
-    $user_id = $_GET['user_id'];  
+   // $user_id = $_GET['user_id'];  
 
     $sql="SELECT * FROM relief_requests WHERE user_id=$user_id";
     $result =$conn-> query($sql);
@@ -129,7 +142,7 @@
        if (!isset($_GET['relief_id']) || $_GET['relief_id'] === '') {
         echo json_encode([
             "status" => "error",
-            "message" => "user_id is required"
+            "message" => "relief_id is required"
         ]);
         exit();
     }

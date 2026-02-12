@@ -143,10 +143,18 @@
             font-size: 14px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+     .av-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.av-table-new {
+    width: 100%;
+    min-width: 1200px; /* adjust if needed */
+    border-collapse: collapse;
+}
+
 
         th{
             padding: 14px;

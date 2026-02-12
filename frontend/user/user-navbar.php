@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 
     <nav class="navbar navbar-expand-lg navbar-aqua sticky-top">
         <div class="container">
@@ -23,7 +27,11 @@
                         <a class="nav-link" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-signin" href="../authentication/login.php">Sign In</a>
+                        <?php if(isset($_SESSION["user_id"])) { ?>
+    <a id="loginSignout" class="nav-link btn-signin" onclick="logOut()">Logout</a>
+<?php } else { ?>
+    <a id="loginSignout" class="nav-link btn-signin" href="../authentication/login.php">Sign In</a>
+<?php } ?>
                     </li>
                 </ul>
             </div>
