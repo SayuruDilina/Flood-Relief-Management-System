@@ -30,7 +30,7 @@
 
         <div class="sidebar-footer">
           <hr class="mx-3 text-white opacity-25">
-            <a href="#" class="sidebar-link text-danger">
+            <a onclick="logOut()" href="#" class="sidebar-link text-danger">
               <i class="fas fa-sign-out-alt me-2"></i> Logout
             </a>
         </div>

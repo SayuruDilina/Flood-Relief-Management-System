@@ -2,6 +2,28 @@
 
     <?php include './admin-sidebar.php';
     ?>
+    <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+  <?php if(!isset($_SESSION["user_id"])) { ?>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 80vh; font-family: sans-serif;">
+    
+    <h1 style="color: #dc3545; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px;">
+        ⚠️ LOGIN FIRST
+    </h1>
+
+    <video 
+        src="../images/not-log-error-vid.mp4" 
+        autoplay 
+        muted 
+        loop 
+        style="width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    </video>
+
+</div>
+<?php } else { ?>
     <main class="hn-main col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
         <div class="hn-content-card hn-search-card">
             <input 
@@ -14,7 +36,7 @@
 
             <div class="hn-content-card hn-summary-card">
                 <h3 class="hn-topic">Total Relief Requests</h3><br/> <br/>
-                <p class="hn-total">01</p>
+                <p id="totalRequests" class="hn-total">01</p>
             </div>
 
             <div class="hn-content-card">
@@ -35,18 +57,25 @@
         <div class="hn-content-card">
             <h3 class="hn-topic">All Relief Requests</h3>
 
+            <div class="hn-table-wrapper">
             <table class="hn-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Relief Type</th>
-                        <th>District</th>
-                        <th>Severity</th>
-                        <th>Family Members</th>
-                        <th>Date</th>
+                            <th>Relief Type</th>
+                            <th>Divisional Secretariat</th>
+                            <th>GN Division</th>
+                            <th>Contact Person</th>
+                            <th>Contact Number</th>
+                            <th>Address</th>
+                            <th>No OF Family Members</th>
+                            <th>Description</th>
+                            <th>District</th>
+                            <th>Current Status</th>
+                            <th>Created At</th>
+                            <th> Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="allRequestsTable">
                     <tr>
                         <td>001</td>
                         <td>Food</td>
@@ -65,8 +94,11 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </main>
+    <?php } ?>
+  
 <script>
     const today = new Date();
 

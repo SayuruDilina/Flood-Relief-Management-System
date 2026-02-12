@@ -1,7 +1,7 @@
 <?php
 include '../config/database_con.php';
 if($_SERVER['REQUEST_METHOD']=="GET"){
-$sql="SELECT COUNT(*) FROM users";
+$sql="SELECT COUNT(*)  AS total_users  FROM users";
 $result =$conn-> query($sql);
 if($result){
        $row = $result->fetch_assoc();

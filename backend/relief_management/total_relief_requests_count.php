@@ -1,12 +1,12 @@
 <?php
 include '../config/database_con.php';
 if($_SERVER['REQUEST_METHOD']=="GET"){
-$sql="SELECT COUNT(*) AS total_cases FROM relief_requests WHERE flood_level='high'";
+$sql="SELECT COUNT(*) AS tot_count FROM relief_requests";
 $result =$conn-> query($sql);
 if($result){
        $row = $result->fetch_assoc();
          echo json_encode([
-            "total_cases" => (int)$row['total_cases']
+            "total_cases" => (int)$row['tot_count']
         ]);
         exit();
     }else{

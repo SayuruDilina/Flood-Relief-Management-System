@@ -88,6 +88,7 @@ body {
 
 .hn-table {
     width: 100%;
+    min-width: 1200px; 
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -122,4 +123,9 @@ body {
 .hn-topic{
     font-weight: bold;
     font-size: 20px;
+}
+.hn-table-wrapper{
+     width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
 }

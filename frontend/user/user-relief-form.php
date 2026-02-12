@@ -5,8 +5,29 @@
 
   <?php include './user-navbar.php';
   ?>
-  
-  <div class="card" style="border-radius: 15px; box-shadow: 0 10px 5px var(--success); ">
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+  <?php if(!isset($_SESSION["user_id"])) { ?>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 80vh; font-family: sans-serif;">
+    
+    <h1 style="color: #dc3545; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px;">
+        ⚠️ LOGIN FIRST
+    </h1>
+
+    <video 
+        src="../images/not-log-error-vid.mp4" 
+        autoplay 
+        muted 
+        loop 
+        style="width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    </video>
+
+</div>
+<?php } else { ?>
+   <div class="card" style="border-radius: 15px; box-shadow: 0 10px 5px var(--success); ">
     <h1 class="av-title">Flood Relief Request</h1>
     <hr class="av-dividerr">
     <h2>Request Details</h2>
@@ -109,7 +130,10 @@
 
   </div>
   </div>
+
+<?php } ?>
   
+    
   <?php 
     include '../common/footer.php';
     include './user-footer.php';

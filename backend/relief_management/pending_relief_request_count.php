@@ -1,7 +1,7 @@
 <?php
 include '../config/database_con.php';
 if($_SERVER['REQUEST_METHOD']=="GET"){
-$sql="SELECT COUNT(*) FROM relief_requests WHERE current_status='pending'";
+$sql="SELECT COUNT(*) AS   pending_cases FROM relief_requests WHERE current_status='pending'";
 $result =$conn-> query($sql);
 if($result){
        $row = $result->fetch_assoc();
