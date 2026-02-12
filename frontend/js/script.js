@@ -1,7 +1,7 @@
 console.log("test");
 function registerUser() {
     console.log("function reached");
-console.log("test");
+    console.log("test");
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;

@@ -76,7 +76,7 @@
 
       <div class="form-group">
         <label>Contact Number</label>
-        <input id="contact_number type" type="text" required>
+        <input id="contact_number" type="text" required>
       </div>
 
       <div class="form-group">
