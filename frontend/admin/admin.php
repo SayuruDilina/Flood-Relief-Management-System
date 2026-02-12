@@ -1,9 +1,16 @@
 <?php
 include '../common/header.php';
 ?>
-<div class="av-dashboard">
-    <main class="av-main">
 
+
+
+<div class="av-dashboard">
+
+    <?php include './admin-sidebar.php'; 
+    ?>
+    
+    <main class="av-main col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+        
         <div class="av-header">
             <h1>Overview</h1>
         </div>

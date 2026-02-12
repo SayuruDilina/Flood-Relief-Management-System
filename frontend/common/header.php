@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="../css/total-relief-requests.css">
     <link rel="stylesheet" href="../css/login-register-style.css">
     <link rel="stylesheet" href="../css/admin-sidebar.css"> 
+    <link rel="stylesheet" href="../css/user-nav-footer-style.css">
+    <link rel="stylesheet" href="../css/home-style.css"> 
 
 </head>
 <body>

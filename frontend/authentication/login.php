@@ -20,7 +20,7 @@
           <label class="form-label fw-semibold">Password</label>
           <input id="password" type="password" class="form-control" placeholder="••••••••••">
           <div class="text-end mt-2">
-            <a href="forgot-password.html" class="small create-link">Forgot Password?</a>
+            <a href="#" class="small create-link">Forgot Password?</a>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
 
         <div class="text-center mt-3">
           <p class="small text-muted">Impacted by floods? <br>
-            <a href="register.php" class="create-link">Request Immediate Assistance</a>
+            <a href="./register.php" class="create-link">Request Immediate Assistance</a>
           </p>
         </div>
       </form>
