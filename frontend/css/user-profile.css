@@ -98,7 +98,19 @@
   outline: none;
 }
 
-.hn-btn-primary,
+.hn-btn-primary{
+  background-color: var(--hn-primary);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-family: var(--hn-heading-font);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+
 .hn-btn-primary-main {
   background-color: var(--hn-primary);
   color: white;
@@ -110,6 +122,7 @@
   cursor: pointer;
   transition: 0.3s ease;
 }
+
 
 .hn-btn-primary:hover,
 .hn-btn-primary-main:hover {
