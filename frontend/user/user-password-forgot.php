@@ -10,11 +10,11 @@
             Enter your details to reset your password
         </p>
 
-        <form>
+        <div>
 
     <div class="hn-form-group">
         <label>Username</label>
-        <input type="text" name="username"
+        <input id="username" type="text" name="username"
                placeholder="Enter your username" required>
     </div>
 
@@ -39,15 +39,15 @@
 
     <div class="hn-form-group">
         <label>NIC Number</label>
-        <input type="text" name="nic"
+        <input id="NIC" type="text" name="nic"
                placeholder="Enter your NIC" required>
     </div>
 
-    <button type="submit" class="hn-btn-primary rounded-pill px-5">
+    <button onclick="forgotPassword()" type="button" class="hn-btn-primary rounded-pill px-5">
         Reset Password
     </button>
 
-</form>
+</div>
 
         <p class="hn-back-link">
             Remembered your password?

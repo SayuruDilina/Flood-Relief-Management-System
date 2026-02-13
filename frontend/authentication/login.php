@@ -20,7 +20,7 @@
           <label class="form-label fw-semibold">Password</label>
           <input id="password" type="password" class="form-control" placeholder="••••••••••">
           <div class="text-end mt-2">
-            <a href="#" class="small create-link">Forgot Password?</a>
+            <a href="../user/user-password-forgot.php" class="small create-link">Forgot Password?</a>
           </div>
         </div>
 

@@ -64,7 +64,7 @@ function registerUser() {
         if (data.status === "ok") {
           
           alert(data.message);
-           window.location.href = "login.php";
+          window.location.href = "../authentication/login.php"; 
         }else{
             alert(data.message);
         }
@@ -98,6 +98,7 @@ const payload={
         if(data.role=="admin"){
             window.location.href = "../admin/admin.php";
         }else{
+          
         window.location.href = "../user/home.php"; 
           
         }
@@ -107,6 +108,91 @@ const payload={
             alert(data.message);
         }
     })
+}
+function setUserProfileInfro(){
+    fetch("http://localhost/flood-Relief-Management-System/backend/user_management/update_user_profile.php")
+    .then(response=>response.json())
+    .then(data=>{
+        console.log(data);
+        document.getElementById("hn-brand-title").innerHTML=data.user.fullname;
+        document.getElementById("fullname").value=data.user.fullname;
+        document.getElementById("contact_number").value=data.user.contact_number;
+        document.getElementById("email").value=data.user.email;
+        document.getElementById("NIC").value=data.user.NIC;
+        document.getElementById("gender").value=data.user.gender;
+        document.getElementById("street_address").value=data.user.street_address;
+        document.getElementById("city").value=data.user.city;
+        document.getElementById("district").value=data.user.district;
+        document.getElementById("province").value=data.user.province;
+        document.getElementById("DOB").value=data.user.DOB;
+    })
+}
+
+function updateProfile(){
+   
+   
+    const fullname = document.getElementById("fullname").value.trim();
+    const contact_number = document.getElementById("contact_number").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const NIC = document.getElementById("NIC").value.trim();
+    const gender = document.getElementById("gender").value;
+    const street_address = document.getElementById("street_address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const district = document.getElementById("district").value;
+    const province = document.getElementById("province").value;
+    const DOB = document.getElementById("DOB").value;
+
+    if ( !fullname || !contact_number || !email || 
+        !NIC || !gender || !street_address || !city || !district || !province || !DOB) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    
+
+    const payload = {
+       
+        fullname,
+        contact_number,
+        email,
+        NIC,
+        gender,
+        street_address,
+        city,
+        district,
+        province,
+        DOB
+    };
+
+    console.log("JSON being sent:", payload);
+   fetch("http://localhost/flood-Relief-Management-System/backend/user_management/update_user_profile.php", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Server response:", data)
+        
+        if (data.status === "ok") {
+          
+          alert(data.message);
+         window.location.href = "../user/home.php"; 
+        }else{
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+   
+    });
 }
 
 function createReliefRequest(){
@@ -561,6 +647,47 @@ data.forEach(relief_request => {
 }) 
     })
 }
+
+function forgotPassword(){
+
+    const username=document.getElementById("username").value;
+    const password=document.getElementById("newPassword").value;
+   const NIC=document.getElementById("NIC").value;
+console.log(username);
+console.log(password);
+console.log(NIC);
+
+
+
+   if(!username || !password || !NIC){
+    alert("Please fill in all fields");
+    return;
+   }
+    const payload={
+        username,
+        password,
+        NIC
+    }
+    console.log(payload);
+    
+
+    fetch("http://localhost/flood-Relief-Management-System/backend/user_authentication/fogot_password.php",{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(payload)
+    })
+    .then(response=>response.json())
+    .then(data=>{
+        console.log(data);
+        if(data.status=="ok"){
+            alert(data.message);
+        }else{
+            alert(data.message);
+        }
+    })
+}
 document.addEventListener("DOMContentLoaded", () => {
     getAllReliefRequestSpecificUser();
     getAllPendingRequests();
@@ -569,5 +696,6 @@ document.addEventListener("DOMContentLoaded", () => {
     highSeverityCasesCount();
     totalReliefRequestCount();
     getAllReleifRequests();
+      setUserProfileInfro();
 });
 
