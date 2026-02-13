@@ -23,7 +23,7 @@ include './user-navbar.php';
                 <label class="hn-label">Full Name</label>
                 <input type="text" name="fullname"
                        class="hn-input"
-                       value="Hiruni Kumarathunge" required>
+                       placeholder="Full Name" required>
             </div>
 
             <div class="hn-col-6">
@@ -31,7 +31,7 @@ include './user-navbar.php';
                 <input id="NIC" type="text"
                        name="nic"
                        class="hn-input"
-                       value="200371010267" required>
+                       placeholder="NIC" required>
             </div>
 
             <div class="hn-col-6">
@@ -39,16 +39,16 @@ include './user-navbar.php';
                 <input id="DOB" type="date"
                        name="dob"
                        class="hn-input"
-                       value="2003-07-28" required>
+                       placeholder="Date of Birth" required>
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">Gender</label>
                 <select id="gender" name="gender"
                         class="hn-input" required>
-                    <option disabled>Select Gender</option>
+                    <option enabled>Select Gender</option>
                     <option value="male">Male</option>
-                    <option value="female" selected>Female</option>
+                    <option value="female">Female</option>
                     <option value="other">Other</option>
                 </select>
             </div>
@@ -62,21 +62,22 @@ include './user-navbar.php';
                 <label class="hn-label">Street Address</label>
                 <input type="text" name="street_address"
                        class="hn-input"
-                       value="392/5, Pitipana South" required>
+                       placeholder="Street Address" required>
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">City</label>
                 <input type="text" name="city"
                        class="hn-input"
-                       value="Homagama" required>
+                       placeholder="City" required>
+                       
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">District</label>
-                <select name="district"
+                <select name="district" 
                         class="hn-select" required>
-                    <option selected>Colombo</option>
+                         <option enabled>Select District</option>
                     <option value="Colombo">Colombo</option>
                   <option value="Gampaha">Gampaha</option>
                   <option value="Kalutara">Kalutara</option>
@@ -109,7 +110,7 @@ include './user-navbar.php';
                 <label class="hn-label">Province</label>
                 <select name="province"
                         class="hn-select" required>
-                    <option selected>Western Province</option>
+                         <option enabled>Select Province</option>
                    <option value="Western">Western</option>
                   <option value="Central">Central</option>
                   <option value="Southern">Southern</option>
@@ -131,14 +132,14 @@ include './user-navbar.php';
                 <label class="hn-label">Email</label>
                 <input type="email" name="email"
                        class="hn-input"
-                       value="hiruni@gmail.com" required>
+                       placeholder="Email" required>
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">Contact Number</label>
                 <input type="tel" name="contact_number"
                        class="hn-input"
-                       value="0710525810" required>
+                       placeholder="Contact Number" required>
             </div>
 
         </div>
