@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="../css/admin-sidebar.css"> 
     <link rel="stylesheet" href="../css/user-nav-footer-style.css">
     <link rel="stylesheet" href="../css/home-style.css"> 
+    <link rel="stylesheet" href="../css/user-profile.css"> 
+    <link rel="stylesheet" href="../css/user-password-forgot.css">
 
 </head>
 <body>
