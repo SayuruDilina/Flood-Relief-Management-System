@@ -24,7 +24,7 @@ session_start();
                         <a class="nav-link" href="./view-relief-request.php">My Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="./user-profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <?php if(isset($_SESSION["user_id"])) { ?>

@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']=='PUT'){
        $NIC=$data['NIC'];
      
     
-      if(empty($username) || empty($password) ||empty($NIC)){
+      if(empty($username) || empty($newpassword) ||empty($NIC)){
           echo json_encode([
               "status" => "error",
               "message" => "All fields are required"
@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='PUT'){
 
     $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
 
-     $sql = "UPDATE users SET  password='$hashedPassword' WHERE username=$username AND NIC=$NIC";
+     $sql = "UPDATE users SET  password='$hashedPassword' WHERE username='$username' AND NIC='$NIC'";
 
     if($conn->query($sql)){
       echo json_encode([

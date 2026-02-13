@@ -10,8 +10,7 @@
   }
   $user_id = $_SESSION["user_id"];
      $data = json_decode(file_get_contents("php://input"), true);
-      $username=$data['username'];
-      $password=$data['password'];
+      
       $fullname=$data['fullname'];
       $contact_number=$data['contact_number'];
       $email=$data['email'];
@@ -23,7 +22,7 @@
       $province=$data['province'];
       $DOB=$data['DOB'];
     
-      if(empty($username) || empty($password) || empty($fullname) || empty($contact_number) || 
+      if( empty($fullname) || empty($contact_number) || 
         empty($email) || empty($NIC) || empty($gender) || empty($street_address) || 
         empty($city) || empty($district) || empty($province) || empty($DOB)){
           echo json_encode([
@@ -34,11 +33,8 @@
       }
     
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
      $sql = "UPDATE users SET
-                username='$username',
-                password='$hashedPassword',
                 fullname='$fullname',
                 contact_number='$contact_number',
                 email='$email',
@@ -54,7 +50,13 @@
     if($conn->query($sql)){
       echo json_encode([
               "status"=>"ok",
-              "message" =>"Username registerd successfully"
+              "message" =>"User updated successfully"
+          ]);
+             exit();
+    }else{
+      echo json_encode([
+              "status"=>"error",
+              "message" =>"User update failed"
           ]);
              exit();
     }

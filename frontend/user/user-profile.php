@@ -7,13 +7,13 @@ include './user-navbar.php';
 <div class="hn-content-card">
 
     <div class="hn-text-center hn-mb-4">
-        <h1 class="hn-brand-title">
-            Hiruni <span class="hn-brand-highlight">Kumarathunge
+        <h1 id="hn-brand-title" class="hn-brand-title" class="hn-brand-highlight">
+            Hiruni Kumarathunge
         </h1>
         <p class="hn-muted-text">Update your personal information</p>
     </div>
 
-    <form id="profileForm" method="POST" action="update_profile.php">
+    <div id="profileForm" >
 
     
         <div class="hn-section-divider">Personal Information</div>
@@ -21,14 +21,14 @@ include './user-navbar.php';
 
             <div class="hn-col-6">
                 <label class="hn-label">Full Name</label>
-                <input type="text" name="fullname"
+                <input id="fullname" type="text" name="fullname"
                        class="hn-input"
                        placeholder="Full Name" required>
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">NIC</label>
-                <input id="NIC" type="text"
+                <input id="NIC" id="NIC" type="text"
                        name="nic"
                        class="hn-input"
                        placeholder="NIC" required>
@@ -36,7 +36,7 @@ include './user-navbar.php';
 
             <div class="hn-col-6">
                 <label class="hn-label">Date of Birth</label>
-                <input id="DOB" type="date"
+                <input  id="DOB" type="date"
                        name="dob"
                        class="hn-input"
                        placeholder="Date of Birth" required>
@@ -60,14 +60,14 @@ include './user-navbar.php';
 
             <div class="hn-col-6">
                 <label class="hn-label">Street Address</label>
-                <input type="text" name="street_address"
+                <input id="street_address" type="text" name="street_address"
                        class="hn-input"
                        placeholder="Street Address" required>
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">City</label>
-                <input type="text" name="city"
+                <input id="city" type="text" name="city"
                        class="hn-input"
                        placeholder="City" required>
                        
@@ -75,7 +75,7 @@ include './user-navbar.php';
 
             <div class="hn-col-6">
                 <label class="hn-label">District</label>
-                <select name="district" 
+                <select id="district" name="district" 
                         class="hn-select" required>
                          <option enabled>Select District</option>
                     <option value="Colombo">Colombo</option>
@@ -108,7 +108,7 @@ include './user-navbar.php';
 
             <div class="hn-col-6">
                 <label class="hn-label">Province</label>
-                <select name="province"
+                <select id="province" name="province"
                         class="hn-select" required>
                          <option enabled>Select Province</option>
                    <option value="Western">Western</option>
@@ -130,14 +130,14 @@ include './user-navbar.php';
 
             <div class="hn-col-6">
                 <label class="hn-label">Email</label>
-                <input type="email" name="email"
+                <input id="email" type="email" name="email"
                        class="hn-input"
                        placeholder="Email" required>
             </div>
 
             <div class="hn-col-6">
                 <label class="hn-label">Contact Number</label>
-                <input type="tel" name="contact_number"
+                <input id="contact_number" type="tel" name="contact_number"
                        class="hn-input"
                        placeholder="Contact Number" required>
             </div>
@@ -153,7 +153,7 @@ include './user-navbar.php';
             </button>
         </div>
 
-    </form>
+</div>
 
 </div>
 </div>
@@ -180,7 +180,7 @@ include './user-navbar.php';
           No, Cancel
         </button>
 
-        <button type="submit"
+        <button  onclick="updateProfile()" type="button"
                 form="profileForm"
                 class="hn-btn-primary rounded-pill px-5">
           Yes, Update
