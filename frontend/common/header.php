@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../css/home-style.css"> 
     <link rel="stylesheet" href="../css/user-profile.css"> 
     <link rel="stylesheet" href="../css/user-password-forgot.css">
+    <link rel="stylesheet" href="../css/system-report.css">
 
 </head>
 <body>
