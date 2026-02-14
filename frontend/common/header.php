@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../css/admin-sidebar.css"> 
     <link rel="stylesheet" href="../css/user-nav-footer-style.css">
     <link rel="stylesheet" href="../css/home-style.css"> 
+    <link rel="stylesheet" href="../css/registered-users.css">
 
 </head>
 <body>
