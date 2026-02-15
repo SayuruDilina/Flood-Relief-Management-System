@@ -3,6 +3,28 @@
     include "./admin-sidebar.php";
     ?>
   
+      <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+  <?php if(!isset($_SESSION["user_id"])) { ?>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-right: 30%; text-align: center; min-height: 80vh; font-family: sans-serif;">
+    
+    <h1 style="  margin-right: 30%; color: #dc3545; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px;">
+        ⚠️ LOGIN FIRST
+    </h1>
+
+    <video 
+        src="../images/not-log-error-vid.mp4" 
+        autoplay 
+        muted 
+        loop 
+        style="  margin-right: 30%; width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    </video>
+
+</div>
+<?php } else { ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -152,6 +174,7 @@
         </div>
     </div>
 </main>
+<?php } ?>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {

@@ -842,6 +842,56 @@ function getUserReports(user_id) {
    
 }
 
+function getAllUsers() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/user_management/admin_users_manage.php")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        const registeredUsersTable= document.getElementById("registeredUsersTable");
+registeredUsersTable.innerHTML = "";
+data.forEach(user => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${user.user_id}</td>
+          <td>${user.NIC}</td>
+        <td>${user.fullname}</td>
+          <td>${user.district}</td>
+         <td>${user.contact_number}</td>
+         <td>${user.email}</td>
+        
+      <td> <button class="avv-more-btn" onclick="navigate(${user.user_id})">
+                                More
+                            </button>
+
+                            <button class="avv-delete-btn" onclick="deleteUser(${user.user_id}  )">
+                                Delete
+                            </button>
+
+                        </td>
+    `;
+    registeredUsersTable.appendChild(tr);
+})
+
+    })
+}
+
+function deleteUser(user_id){
+fetch(`http://localhost/flood-Relief-Management-System/backend/user_management/admin_users_manage.php?user_id=${user_id}`,{
+    method:"DELETE"
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+    if(data.status== "ok") {
+        alert(data.message);
+        getAllUsers();
+    }else{
+        alert(data.message);
+    }
+   
+})
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     getAllReliefRequestSpecificUser();
     getAllPendingRequests();
@@ -851,5 +901,6 @@ document.addEventListener("DOMContentLoaded", () => {
     totalReliefRequestCount();
     getAllReleifRequests();
     setUserProfileInfro();
+    getAllUsers();
 });
 

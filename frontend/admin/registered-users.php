@@ -6,6 +6,29 @@ include '../common/header.php';
 <div class="av-main col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4"> 
      <?php include './admin-sidebar.php'; 
     ?>
+
+        <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+  <?php if(!isset($_SESSION["user_id"])) { ?>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-right: 30%; text-align: center; min-height: 80vh; font-family: sans-serif;">
+    
+    <h1 style="  margin-right: 30%; color: #dc3545; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px;">
+        ⚠️ LOGIN FIRST
+    </h1>
+
+    <video 
+        src="../images/not-log-error-vid.mp4" 
+        autoplay 
+        muted 
+        loop 
+        style="  margin-right: 30%; width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    </video>
+
+</div>
+<?php } else { ?>
     <div class="avv-container">
 
         <h1 class="avv-title">Registered Users Overview</h1>
@@ -41,15 +64,17 @@ include '../common/header.php';
             <table>
                 <thead>
                     <tr>
+                        <th><b>User ID</b></th>
                         <th><b>NIC</b></th>
                         <th><b>Full Name</b></th>
                         <th><b>District</b></th>
                         <th><b>Contact Number</b></th>
+                        <th><b>Email</b></th>
                         <th><b>Action</b></th>
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="registeredUsersTable">
                     <tr>
                         <td><b>200323400600</b></td>
                         <td><b>Wahana Kumarathunge</b></td>
@@ -89,11 +114,7 @@ include '../common/header.php';
     </div>
 </div> 
 
-<script>
-    function viewUser(nic) {
-        window.location.href = "user-summary.php?nic=" + nic;
-    }
-</script>
+<?php } ?>
 
 
 <?php

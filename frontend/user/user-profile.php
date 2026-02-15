@@ -3,6 +3,28 @@ include '../common/header.php';
 include './user-navbar.php';
 ?>
 
+    <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+  <?php if(!isset($_SESSION["user_id"])) { ?>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-right: 30%; text-align: center; min-height: 80vh; font-family: sans-serif;">
+    
+    <h1 style="  margin-right: 30%; color: #dc3545; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px;">
+        ⚠️ LOGIN FIRST
+    </h1>
+
+    <video 
+        src="../images/not-log-error-vid.mp4" 
+        autoplay 
+        muted 
+        loop 
+        style="  margin-right: 30%; width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    </video>
+
+</div>
+<?php } else { ?>
 <div class="hn-body">
 <div class="hn-content-card">
 
@@ -191,6 +213,7 @@ include './user-navbar.php';
   </div>
 </div>
 
+<?php } ?>
 <?php 
 include './user-footer.php';
 include '../common/footer.php';

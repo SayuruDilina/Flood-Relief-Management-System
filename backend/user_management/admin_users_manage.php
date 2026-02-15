@@ -22,8 +22,15 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 }
 // DELETE SPECIFIC USER 
 if($_SERVER['REQUEST_METHOD']=="DELETE"){
-  $data = json_decode(file_get_contents("php://input"), true);
-  $user_id=$data['user_id'];
+   if (!isset($_GET['user_id']) || $_GET['user_id'] === '') {
+        http_response_code(400);
+        echo json_encode([
+            "status" => "error",
+            "message" => "User ID is required"
+        ]);
+        exit();
+    }
+  $user_id=$_GET['user_id'];
   $sql="DELETE FROM users WHERE user_id=$user_id";
   if($conn->query($sql)){
     echo json_encode([
