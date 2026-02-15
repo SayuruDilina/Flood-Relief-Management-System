@@ -7,7 +7,7 @@
     <title>AquaRelief</title>
     <link rel="stylesheet" href="../css/user-flood-relief-styles.css">
     <link rel="stylesheet" href="../css/admin.css">
-    
+    <link rel="stylesheet" href="..../css/user-report-style.css">
     
 
    
@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="../css/user-nav-footer-style.css">
     <link rel="stylesheet" href="../css/home-style.css"> 
     <link rel="stylesheet" href="../css/registered-users.css">
+    <link rel="stylesheet" href="../css/user-profile.css"> 
+    <link rel="stylesheet" href="../css/user-password-forgot.css">
+    <link rel="stylesheet" href="../css/system-report.css">
 
 </head>
 <body>
