@@ -15,10 +15,10 @@
     </div>
 
     <div class="table-card p-4 mb-4 border-0 shadow-sm">
-        <form class="row g-3 align-items-end">
+        <div class="row g-3 align-items-end">
             <div class="col-md-4">
                 <label class="form-label small fw-bold text-muted">FILTER BY AREA</label>
-                <select class="form-select border-0 shadow-sm"  id="districtFilter">
+                <select onchange="getReportFilterByArea()" id="district" class="form-select border-0 shadow-sm"  id="districtFilter">
                     <option value="">All Regions</option>
                     <option>Colombo</option>
                     <option>Gampaha</option>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label small fw-bold text-muted">RELIEF TYPE</label>
-                <select class="form-select border-0 shadow-sm" id="reliefFilter">
+                <select onchange="getReportFilterByRelief()" class="form-select border-0 shadow-sm" id="reliefFilter">
                     <option value="">All Requests</option>
                     <option>Food</option>
                     <option>Water</option>
@@ -58,18 +58,18 @@
                 </select>
             </div>
             <div class="col-md-4">
-                <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                <button  type="button" class="btn btn-primary w-100 fw-bold py-2">
                     Generate Filtered Report
                 </button>
             </div>
-        </form>
+</div>
     </div>
 
     <div class="row g-3 mb-5">
         <div class="col-md-2">
             <div class="metric-card text-center border-start border-primary border-4">
                 <div class="small text-muted fw-bold mb-1">Total Users</div>
-                <div class="metric-value" id="totalUsers">125</div>
+                <div  class="metric-value" id="totalUsers">125</div>
             </div>
         </div>
         <div class="col-md-2">
@@ -152,66 +152,14 @@
         </div>
     </div>
 </main>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const districtFilter = document.getElementById("districtFilter");
     const reliefFilter = document.getElementById("reliefFilter");
-    const rows = document.querySelectorAll("#reportTable tr");
-
-    function updateReport() {
-
-        let selectedDistrict = districtFilter.value;
-        let selectedRelief = reliefFilter.value;
-
-        let total = 0;
-        let highCount = 0;
-        let food = 0;
-        let water = 0;
-        let medicine = 0;
-        let shelter = 0;
-
-        rows.forEach(row => {
-
-            const district = row.dataset.district;
-            const relief = row.dataset.relief;
-            const severity = row.dataset.severity;
-
-            let showRow = true;
-
-            if (selectedDistrict !== "" && district !== selectedDistrict) {
-                showRow = false;
-            }
-
-            if (selectedRelief !== "" && relief !== selectedRelief) {
-                showRow = false;
-            }
-
-            if (showRow) {
-
-                row.style.display = "";
-                total++;
-
-                if (severity === "High") highCount++;
-
-                if (relief === "Food") food++;
-                if (relief === "Water") water++;
-                if (relief === "Medicine") medicine++;
-                if (relief === "Shelter") shelter++;
-
-            } else {
-                row.style.display = "none";
-            }
-        });
-
-        document.getElementById("totalUsers").textContent = total;
-        document.getElementById("highSeverity").textContent = highCount;
-        document.getElementById("foodCount").textContent = food;
-        document.getElementById("waterCount").textContent = water;
-        document.getElementById("medicineCount").textContent = medicine;
-        document.getElementById("shelterCount").textContent = shelter;
-    }
-
+   
+    
     districtFilter.addEventListener("change", function () {
 
         if (districtFilter.value !== "") {
@@ -221,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reliefFilter.disabled = false;
         }
 
-        updateReport();
+       
     });
 
     reliefFilter.addEventListener("change", function () {
@@ -233,12 +181,12 @@ document.addEventListener("DOMContentLoaded", function () {
             districtFilter.disabled = false;
         }
 
-        updateReport();
+
     });
 
-    updateReport();
+ 
 });
-</script>
+</script> 
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

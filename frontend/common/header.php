@@ -7,7 +7,7 @@
     <title>AquaRelief</title>
     <link rel="stylesheet" href="../css/user-flood-relief-styles.css">
     <link rel="stylesheet" href="../css/admin.css">
-    
+    <link rel="stylesheet" href="..../css/user-report-style.css">
     
 
    
