@@ -18,11 +18,11 @@
             <i class="fas fa-hand-holding-medical me-2"></i> Relief Requests
           </a>
 
-          <a href="#" class="sidebar-link">
+          <a href="./registered-users.php" class="sidebar-link">
             <i class="fas fa-users me-2"></i> Registered Users
           </a>
 
-          <a href="#" class="sidebar-link">
+          <a href="./system-report.php" class="sidebar-link">
             <i class="fas fa-file-invoice me-2"></i> System Reports
           </a>
 
