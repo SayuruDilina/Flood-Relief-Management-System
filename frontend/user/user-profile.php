@@ -26,7 +26,7 @@ if (session_status() === PHP_SESSION_NONE) {
 </div>
 <?php } else { ?>
 <div class="hn-body">
-<div class="hn-content-card">
+<div class="hn-profile-card">
 
     <div class="hn-text-center hn-mb-4">
         <h1 id="hn-brand-title" class="hn-brand-title" class="hn-brand-highlight">
@@ -192,20 +192,20 @@ if (session_status() === PHP_SESSION_NONE) {
       </div>
 
       <div class="modal-body hn-modal-body text-center">
-        <p>Are you sure you want to update your profile details?</p>
+        <p>Are you sure you want to update your profile?</p>
       </div>
 
       <div class="modal-footer hn-modal-footer">
         <button type="button"
                 class="hn-btn-secondary rounded-pill px-5"
                 data-bs-dismiss="modal">
-          No, Cancel
+          No
         </button>
 
         <button  onclick="updateProfile()" type="button"
                 form="profileForm"
                 class="hn-btn-primary rounded-pill px-5">
-          Yes, Update
+          Yes
         </button>
       </div>
 

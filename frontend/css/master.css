@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Public+Sans:wght@300;400;600&display=swap');
+
+:root {
+    --primary-teal: #5bb1a2;
+    --dark-teal: #458a7e;
+    --bg-light: #f0f5f4;
+    --white: #f9fdfc;
+    --text-dark: #4a4a4a;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --blue: #0d6efd;
+    --heading-font: 'Montserrat', sans-serif;
+    --body-font: 'Public Sans', sans-serif;
+}
+
