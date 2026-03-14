@@ -47,7 +47,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <div class="av-card border-bottom border-warning border-5">
                 <h3><b>New Signups</b></h3>
-                <div id="pendingRequests" class="av-count text-warning"></div>
+                <div id="newSignups" class="av-count text-warning"></div>
                 <p class="text-muted small mt-2">Joined Since Yesterday</p>
             </div>
 

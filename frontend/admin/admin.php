@@ -79,8 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <th>Current Status</th>
                             <th>Created At</th>
                             <th>User id</th>
-                            <th> Action</th>
-
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="highPendingRequestsTable">

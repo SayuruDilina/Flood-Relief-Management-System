@@ -46,30 +46,30 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="mb-3">
                         <div class="d-flex justify-content-between small fw-bold mb-1">
                             <span>High Severity</span>
-                            <span class="text-danger">65%</span>
+                            <span  id="highSeverityBar"  class="text-danger">65%</span>
                         </div>
                         <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 65%"></div>
+                            <div  id="highSeverityBarWidth" class="progress-bar bg-danger" role="progressbar" style="width: 65%"></div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <div class="d-flex justify-content-between small fw-bold mb-1">
                             <span>Medium Severity</span>
-                            <span class="text-warning">25%</span>
+                            <span id="mediumSeverity" class="text-warning">25%</span>
                         </div>
                         <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"></div>
+                            <div id="mediumSeverityBar" class="progress-bar bg-warning" role="progressbar" style="width: 25%"></div>
                         </div>
                     </div>
 
                     <div>
                         <div class="d-flex justify-content-between small fw-bold mb-1">
                             <span>Low Severity</span>
-                            <span class="text-success">10%</span>
+                            <span id="lowSeverity" class="text-success">10%</span>
                         </div>
                         <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%"></div>
+                            <div  id="lowSeverityBar"  class="progress-bar bg-success" role="progressbar" style="width: 10%"></div>
                         </div>
                     </div>
                 </div>
