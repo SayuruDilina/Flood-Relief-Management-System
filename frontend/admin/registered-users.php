@@ -29,26 +29,26 @@ if (session_status() === PHP_SESSION_NONE) {
 
 </div>
 <?php } else { ?>
+        
+        <div>
+            <h2 class="brand-text m-0">Registered <span class="text-primary">Users</span></h2>
+            <p class="text-muted small">All AquaRelief Users</p>
+        </div>
+        <hr class="av-divider">
+
     <div class="avv-container">
+        <div class="av-cards">
 
-        <h1 class="avv-title">Registered Users Overview</h1>
-        <hr class="avv-dividerr">
-
-        <div class="avv-cards">
-
-            <div class="avv-card blue">
+            <div class="av-card border-bottom border-success border-5">
                 <h3><b>Total Registered Users</b></h3>
-                <h2>125</h2>
+                <div id="totalUsers" class="av-count text-success"></div>
+                <p class="text-muted small mt-2">Active Members</p>
             </div>
 
-            <div class="avv-card yellow">
-                <h3><b>Pending Relief Requests</b></h3>
-                <h2>12</h2>
-            </div>
-
-            <div class="avv-card red">
-                <h3><b>High Severity Cases</b></h3>
-                <h2>42</h2>
+            <div class="av-card border-bottom border-warning border-5">
+                <h3><b>New Signups</b></h3>
+                <div id="newSignups" class="av-count text-warning"></div>
+                <p class="text-muted small mt-2">Joined Since Yesterday</p>
             </div>
 
         </div>
@@ -56,12 +56,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <div class="avv-table-section">
 
-            <div class="avv-table-header">
-                <h2><b>Registered Users</b></h2>
-                <a href="#">View All</a>
+            <div class="av-table-header">
+                <h5 class="fw-bold">All Registered Users</h5>
             </div>
 
-            <table>
+            <table class="avv-table">
                 <thead>
                     <tr>
                         <th><b>User ID</b></th>

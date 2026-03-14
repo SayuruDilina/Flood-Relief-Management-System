@@ -461,7 +461,6 @@ function updateSpecificReliefRequest(relief_id) {
 
     const payload = {
         relief_id,
-        user_id,
         type_of_relief,
         devisional_secretariat,
         gn_devision,
@@ -530,12 +529,14 @@ function getAllPendingRequests() {
             const highPendingRequestsTable = document.getElementById("highPendingRequestsTable");
             highPendingRequestsTable.innerHTML = "";
 
+           
             data.forEach(relief_request => {
 
                 highPendingRequestsTable.innerHTML += `
     <tr>
 
     <td>${relief_request.type_of_relief}</td>
+    <td>${relief_request.flood_level}</td>
     <td>${relief_request.divisional_secretariat}</td>
     <td>${relief_request.gn_division}</td>
     <td>${relief_request.contact_person_name}</td>
@@ -546,7 +547,8 @@ function getAllPendingRequests() {
     <td>${relief_request.district}</td>
     <td>${relief_request.current_status}</td>
     <td>${relief_request.created_at}</td>
-    <td> <button type="button" class="btn btn-primary rounded-pill px-4" onclick="takeActionRequest(${relief_request.relief_id})"> accept</button></td>
+    <td>${relief_request.user_id}</td>
+    <td><button class="btn-viewed" type="button" class="btn  " onclick="takeActionRequest(${relief_request.relief_id})"> accept</button></td>
          
      </tr>
     `;
@@ -594,21 +596,69 @@ function pendingReliefRequestCount() {
             document.getElementById("pendingRequests").innerText = data.pending_cases;
         })
 }
+function mediumRequestCount(){
 
+    fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/medium_req_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const count =Math.round(data.total_cases / totalReqCount * 100);
+            document.getElementById("mediumSeverity").innerText = count+"%";
+            document.getElementById("mediumSeverityBarWidth").style.width=count;
+          
+        })
+}
+
+function lowSeverityCasesCount() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/low_req_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const count =Math.round(data.total_cases / totalReqCount * 100);
+            document.getElementById("lowSeverity").innerText = count+"%";
+            document.getElementById("lowSeverityBar").style.width=count;
+          
+        }) 
+}
+function highSeverityCasesCountDash(){
+ fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/high_flood_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            console.log(totalReqCount);
+            document.getElementById("highSeverityCases").innerHTML = data.total_cases;
+        })
+}
+function recentlyRegisterdCount(){
+    fetch("http://localhost/flood-Relief-Management-System/backend/user_management/count_recent_registerd_users.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("newSignups").innerHTML = data.total_users;
+        })
+}
 function highSeverityCasesCount() {
     fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/high_flood_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            document.getElementById("highSeverityCases").innerText = data.total_cases;
+            console.log(totalReqCount);
+            
+            const count =Math.round(data.total_cases / totalReqCount * 100);
+          document.getElementById("highSeverityBar").innerText =count+"%";
+         document.getElementById("highSeverityBarWidth").style.width=count;
+          document.getElementById("highSeverity").innerHTML = data.total_cases;
+            document.getElementById("highSeverityCases").innerHTML = data.total_cases;
         })
 }
+let totalReqCount=0;
 function totalReliefRequestCount() {
     fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/total_relief_requests_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            document.getElementById("totalRequests").innerText = data.total_cases;
+          totalReqCount=document.getElementById("totalRequests").innerText = data.total_cases;
+          highSeverityCasesCount();
         })
 }
 
@@ -620,9 +670,11 @@ function getAllReleifRequests() {
 
             const allRequestsTable = document.getElementById("allRequestsTable");
             allRequestsTable.innerHTML = "";
-
+     
             data.forEach(relief_request => {
-
+ let btnClass = relief_request.current_status === "pending" 
+        ? "btn-pending" 
+        : "btn-viewed";
                 allRequestsTable.innerHTML += `
     <tr>
 
@@ -639,7 +691,7 @@ function getAllReleifRequests() {
     <td>${relief_request.created_at}</td>
       <td>${relief_request.user_id}</td>
     
-    <td> <button type="button" class="btn btn-primary rounded-pill px-4" onclick="takeActionRequest(${relief_request.relief_id})"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id})"> ${relief_request.current_status}</button></td>
          
      </tr>
     `;
@@ -702,7 +754,7 @@ function getReportFilterByArea() {
             console.log(data);
             document.getElementById("totalUsers").innerText = data.total_registered_users;
             document.getElementById("highSeverity").innerText = data.total_high_flood;
-            document.getElementById("foodCount").innerText = data.total_food_request;
+            document.getElementById("foodCount").innerHTML = data.total_food_request;
             document.getElementById("waterCount").innerText = data.total_water_request;
             document.getElementById("medicineCount").innerText = data.total_medicine_request;
             document.getElementById("shelterCount").innerText = data.total_shelter_request;
@@ -788,7 +840,7 @@ function getReportFilterByRelief() {
         </td>
     `;
     // Attach click listener here
-  
+  reportTable.appendChild(tr);
 
             });
 
@@ -891,16 +943,99 @@ fetch(`http://localhost/flood-Relief-Management-System/backend/user_management/a
    
 })
 }
+function getAllRequestForSystemReports(){
 
+
+ fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/admin_relief_request.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+ document.getElementById("foodCount").innerHTML = data.total_food_request;
+            document.getElementById("waterCount").innerText = data.total_water_request;
+            document.getElementById("medicineCount").innerText = data.total_medicine_request;
+            document.getElementById("shelterCount").innerText = data.total_shelter_request;
+            const reportTable = document.getElementById("reportTable");
+            reportTable.innerHTML = "";
+
+            data.forEach(relief_request => {
+
+              let btnClass = relief_request.current_status === "pending" 
+        ? "btn-pending" 
+        : "btn-viewed";
+              
+                reportTable.innerHTML += `
+    <tr>
+    <td>${relief_request.user_id}</td>
+     <td>${relief_request.contact_person_name}</td>
+     <td>${relief_request.district}</td>
+      <td>${relief_request.type_of_relief}</td>
+          <td>${relief_request.flood_level}</td>
+        <td>${relief_request.current_status}</td>
+    
+    
+    <td> <button type="button" class=${btnClass}    onclick="takeActionRequest(${relief_request.relief_id})"> ${relief_request.current_status}</button></td>
+         
+     </tr>
+    `;
+
+            })
+        })
+}
+function getAllFoodRequestCount() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_food_req_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("foodCount").innerHTML = data.total_flood_count;
+        })
+  }
+
+function getAllMedicineRequestCount() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_medicine_req_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("medicineCount").innerHTML = data.total_medicine_count;
+        })
+  }
+
+  function getAllWaterRequestCount() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_water_req_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("waterCount").innerHTML = data.total_water_count;
+        })
+  }
+ 
+  function getALLShelterRequests(){
+    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_shelter_req_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("shelterCount").innerHTML = data.total_Shelter_count;
+        })
+  }
+  
 document.addEventListener("DOMContentLoaded", () => {
     getAllReliefRequestSpecificUser();
     getAllPendingRequests();
     totalUserCount();
     pendingReliefRequestCount();
-    highSeverityCasesCount();
+    //highSeverityCasesCount();
+    highSeverityCasesCountDash();
     totalReliefRequestCount();
     getAllReleifRequests();
     setUserProfileInfro();
     getAllUsers();
+    getAllRequestForSystemReports();
+    getAllFoodRequestCount();
+    getAllMedicineRequestCount();
+    getAllWaterRequestCount();
+    getALLShelterRequests();
+    mediumRequestCount();
+lowSeverityCasesCount();
+recentlyRegisterdCount();
 });
 

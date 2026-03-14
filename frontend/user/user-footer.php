@@ -15,11 +15,11 @@
                 <a href="./home.php" class="footer-link">Home</a>
                 <a href="./user-relief-form.php" class="footer-link">New Request</a>
                 <a href="./view-relief-request.php" class="footer-link">Track Status</a>
-                <a href="#" class="footer-link">My Profile</a>
+                <a href="./user-profile.php" class="footer-link">My Profile</a>
               </div>
 
               <div class="col-lg-4 col-md-4 mb-4">
-                <h5 class="footer-heading" style="color: rgba(119, 4, 0, 0.901);">Emergency Hotlines</h5>
+                <h5 class="footer-heading">Emergency Hotlines</h5>
                 <div class="emergency-badge">
                 <div class="mb-2"><i class="fas fa-phone-alt me-2"></i> Disaster Management: 117</div>
                 <div class="mb-2"><i class="fas fa-ambulance me-2"></i> Ambulance Service: 1990</div>

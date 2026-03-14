@@ -5,8 +5,8 @@ include '../common/header.php';
     <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4 no-print">
             
-            <a href="#" class="btn btn-sm btn-outline-secondary">
-                <i class="fas fa-arrow-left me-2"></i> Back to Reports
+            <a onclick="history.back()" class="btn btn-sm btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Back
             </a>
 
             <button class="btn btn-primary btn-print" 
@@ -88,13 +88,6 @@ include '../common/header.php';
                             <span id="userDistrict" class="text-primary fw-bold">80.0098° E</span>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-md-6 d-flex align-items-center">
-                    <p class="text-muted small mb-0">
-                        <i class="fas fa-info-circle me-2"></i> Coordinates obtained via GPS Geolocation. This
-                        represents the user's exact physical location for distribution accuracy.
-                    </p>
                 </div>
 
             </div>

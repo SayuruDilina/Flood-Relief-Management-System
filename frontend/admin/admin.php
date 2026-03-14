@@ -33,56 +33,59 @@ if (session_status() === PHP_SESSION_NONE) {
 <?php } else { ?>
     <main class="av-main col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
         
-        <div class="av-header">
-            <h1>Overview</h1>
+        <div>
+            <h2 class="brand-text m-0">System <span class="text-primary">Overview</span></h2>
+            <p class="text-muted small">Welcome to the Admin Portal!</p>
         </div>
+
         <hr class="av-divider">
         <div class="av-cards">
-            <div class="av-card blue">
+            <div class="av-card border-bottom border-primary border-5">
                 <h3>Total Registered Users</h3>
-                <div id="totalUsers" class="av-count">125</div>
+                <div id="totalUsers" class="av-count text-primary"></div>
             </div>
 
-            <div class="av-card yellow">
+            <div class="av-card border-bottom border-warning border-5">
                 <h3>Pending Relief Requests</h3>
-                <div id="pendingRequests" class="av-count">15</div>
+                <div id="pendingRequests" class="av-count text-warning">15</div>
             </div>
 
-            <div class="av-card red">
+            <div class="av-card border-bottom border-danger border-5">
                 <h3>High Severity Cases</h3>
-                <div id="highSeverityCases" class="av-count">42</div>
+                <div id="highSeverityCases" class="av-count text-danger">42</div>
             </div>
         </div>
 
 
         <div class="av-table-box">
             <div class="av-table-header">
-                <h2>Recent Incoming Requests</h2>
-                <a href="#">View All</a>
+                <h5 class="fw-bold mb-4">Recent Incoming Requests</h5>
+                <a class="view-all-link" href="total-relief-requests.php">View All</a>
             </div>
             <div class="av-table-wrapper">
                 <table class="av-table-new">
                     <thead>
                         <tr>
                             <th>Relief Type</th>
+                            <th>Severity Type</th>
                             <th>Divisional Secretariat</th>
                             <th>GN Division</th>
                             <th>Contact Person</th>
                             <th>Contact Number</th>
                             <th>Address</th>
-                            <th>No OF Family Members</th>
+                            <th>No Of Family Members</th>
                             <th>Description</th>
                             <th>District</th>
                             <th>Current Status</th>
                             <th>Created At</th>
                             <th>User id</th>
-                            <th> Action</th>
-
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="highPendingRequestsTable">
                         <tr>
                             <td>199012345678</td>
+                            <td class="status high">High</td>
                             <td><strong>Nimal Siriwardena</strong></td>
                             <td>Gampaha</td>
                             <td><span class="av-status">Active</span></td>

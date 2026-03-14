@@ -9,9 +9,6 @@ session_start();
                 <a href="./home.php"><img src="../images/aquarelief-logo.png" alt="AquaRelief Logo" class="navbar-logo me-2">
                 </a>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aquaNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="aquaNavbar">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
