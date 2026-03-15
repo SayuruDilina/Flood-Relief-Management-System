@@ -21,15 +21,17 @@ if($result->num_rows>0){
 }
 
 if($_SERVER['REQUEST_METHOD']=="PUT"){
-  if (!isset($_GET['relief_id']) || $_GET['relief_id'] === '') {
-        echo json_encode([
-            "status" => "error",
-            "message" => "relief_id is required"
-        ]);
-        exit();
-    }
-  $relief_id=$_GET['relief_id'];
-  $status="viewed";
+      $data = json_decode(file_get_contents("php://input"), true);
+  // if (!isset($_GET['relief_id']) || $_GET['relief_id'] === '' ) {
+  //       echo json_encode([
+  //           "status" => "error",
+  //           "message" => "relief_id is required"
+  //       ]);
+  //       exit();
+  //   }
+  $relief_id=$data['relief_id'];
+  $status=$data['status'];
+ // $status="viewed";
   $sql="UPDATE relief_requests SET current_status='$status' WHERE relief_id=$relief_id";
   if($conn->query($sql)){
     echo json_encode([

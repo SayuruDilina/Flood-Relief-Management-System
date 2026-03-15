@@ -190,3 +190,16 @@ hr {
         padding: 15px;
     }
 }
+
+.btn-reject{
+    padding: 6px 18px;
+    width: 80px;
+    background: var(--danger);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-bottom: auto;
+}

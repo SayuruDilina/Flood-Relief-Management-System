@@ -123,7 +123,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             <th>District</th>
                             <th>Current Status</th>
                             <th>Created At</th>
-                            <th>Action</th>
+                            <th>Accept</th>
+                            <th>Reject</th>
                     </tr>
                 </thead>
                 <tbody id="allRequestsTable">

@@ -531,7 +531,13 @@ function getAllPendingRequests() {
 
            
             data.forEach(relief_request => {
-
+   if( relief_request.current_status === "pending" ){
+                    btnClass = "btn-pending";
+                }else if(relief_request.current_status === "viewed"){
+                    btnClass = "btn-viewed";
+                }else{
+                    btnClass = "btn-reject";
+                }
                 highPendingRequestsTable.innerHTML += `
     <tr>
 
@@ -548,8 +554,8 @@ function getAllPendingRequests() {
     <td>${relief_request.current_status}</td>
     <td>${relief_request.created_at}</td>
     <td>${relief_request.user_id}</td>
-    <td><button class="btn-viewed" type="button" class="btn  " onclick="takeActionRequest(${relief_request.relief_id})"> accept</button></td>
-         
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
     `;
 
@@ -559,11 +565,20 @@ function getAllPendingRequests() {
 
 }
 
-function takeActionRequest(relief_id) {
+function takeActionRequest(relief_id,status) {
     console.log(relief_id);
+const payload = {
+    relief_id: relief_id,
+    status: status
+}
+console.log(payload);
 
-    fetch(`http://localhost/flood-Relief-Management-System/backend/relief_management/admin_relief_request.php?relief_id=${relief_id}`, {
-        method: 'PUT'
+    fetch(`http://localhost/flood-Relief-Management-System/backend/relief_management/admin_relief_request.php`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
     })
         .then(response => response.json())
         .then(data => {
@@ -670,11 +685,18 @@ function getAllReleifRequests() {
 
             const allRequestsTable = document.getElementById("allRequestsTable");
             allRequestsTable.innerHTML = "";
-     
+      let btnClass;
             data.forEach(relief_request => {
- let btnClass = relief_request.current_status === "pending" 
-        ? "btn-pending" 
-        : "btn-viewed";
+                if( relief_request.current_status === "pending" ){
+                    btnClass = "btn-pending";
+                }else if(relief_request.current_status === "viewed"){
+                    btnClass = "btn-viewed";
+                }else{
+                    btnClass = "btn-reject";
+                }
+//  let btnClass = relief_request.current_status === "pending" 
+//         ? "btn-pending" 
+//         : "btn-viewed";
                 allRequestsTable.innerHTML += `
     <tr>
 
@@ -691,8 +713,8 @@ function getAllReleifRequests() {
     <td>${relief_request.created_at}</td>
       <td>${relief_request.user_id}</td>
     
-    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id})"> ${relief_request.current_status}</button></td>
-         
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
     `;
 
@@ -957,12 +979,18 @@ function getAllRequestForSystemReports(){
             document.getElementById("shelterCount").innerText = data.total_shelter_request;
             const reportTable = document.getElementById("reportTable");
             reportTable.innerHTML = "";
-
+let color="";
             data.forEach(relief_request => {
-
-              let btnClass = relief_request.current_status === "pending" 
-        ? "btn-pending" 
-        : "btn-viewed";
+   if( relief_request.current_status === "pending" ){
+                  color = "var(--warning)";
+                }else if(relief_request.current_status === "viewed"){
+                   color = "var(--success)";
+                }else{
+                  color = "var(--danger)";
+                }
+        //       let btnClass = relief_request.current_status === "pending" 
+        // ? "btn-pending" 
+        // : "btn-viewed";
               
                 reportTable.innerHTML += `
     <tr>
@@ -971,10 +999,10 @@ function getAllRequestForSystemReports(){
      <td>${relief_request.district}</td>
       <td>${relief_request.type_of_relief}</td>
           <td>${relief_request.flood_level}</td>
-        <td>${relief_request.current_status}</td>
+        <td style="color:${color}; font-weight:bold;">${relief_request.current_status}</td>
     
     
-    <td> <button type="button" class=${btnClass}    onclick="takeActionRequest(${relief_request.relief_id})"> ${relief_request.current_status}</button></td>
+   
          
      </tr>
     `;
@@ -1035,7 +1063,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getAllWaterRequestCount();
     getALLShelterRequests();
     mediumRequestCount();
-lowSeverityCasesCount();
-recentlyRegisterdCount();
+    lowSeverityCasesCount();
+    recentlyRegisterdCount();
 });
 
