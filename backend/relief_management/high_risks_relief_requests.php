@@ -1,7 +1,11 @@
 <?php
 include '../config/database_con.php';
 if($_SERVER['REQUEST_METHOD']=="GET"){
-$sql="SELECT * FROM relief_requests WHERE flood_level='high' AND current_status='pending'";
+$sql="SELECT relief_requests.*, users.nic AS NIC
+FROM relief_requests
+JOIN users ON relief_requests.user_id = users.user_id
+WHERE relief_requests.flood_level = 'high'
+AND relief_requests.current_status = 'pending'";
 $result =$conn-> query($sql);
 if($result->num_rows>0){
         $relief_requests = array();

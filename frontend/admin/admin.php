@@ -78,7 +78,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <th>District</th>
                             <th>Current Status</th>
                             <th>Created At</th>
-                            <th>User id</th>
+                            <th>NIC</th>
                             <th>ACCEPT</th>
                              <th>REJECT</th>
                         </tr>
