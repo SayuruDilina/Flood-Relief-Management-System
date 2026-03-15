@@ -25,6 +25,9 @@
           <a href="./system-report.php" class="sidebar-link">
             <i class="fas fa-file-invoice me-2"></i> System Reports
           </a>
+          
+          <a href="./emergency-alerts.php" class="sidebar-link"><i class="fas fa-bullhorn me-2"></i> Send Alerts
+          </a>
 
         </div>
 
