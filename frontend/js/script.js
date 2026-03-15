@@ -553,7 +553,7 @@ function getAllPendingRequests() {
     <td>${relief_request.district}</td>
     <td>${relief_request.current_status}</td>
     <td>${relief_request.created_at}</td>
-    <td>${relief_request.user_id}</td>
+    <td>${relief_request.NIC}</td>
     <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
@@ -701,6 +701,7 @@ function getAllReleifRequests() {
     <tr>
 
     <td>${relief_request.type_of_relief}</td>
+    <td>${relief_request.flood_level}</td>
     <td>${relief_request.divisional_secretariat}</td>
     <td>${relief_request.gn_division}</td>
     <td>${relief_request.contact_person_name}</td>
@@ -711,7 +712,7 @@ function getAllReleifRequests() {
     <td>${relief_request.district}</td>
     <td>${relief_request.current_status}</td>
     <td>${relief_request.created_at}</td>
-      <td>${relief_request.user_id}</td>
+    <td>${relief_request.NIC}</td>
     
     <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
@@ -1044,6 +1045,54 @@ function getAllMedicineRequestCount() {
             console.log(data);
             document.getElementById("shelterCount").innerHTML = data.total_Shelter_count;
         })
+  }
+
+  function searchRequestByNIC(){
+    const nic = document.getElementById("search-nic").value;
+    console.log(nic);
+    
+    fetch(`http://localhost/flood-Relief-Management-System/backend/relief_management/search_relief_request.php?nic=${nic}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+           const allRequestsTable = document.getElementById("allRequestsTable");
+            allRequestsTable.innerHTML = "";
+      let btnClass;
+            data.data.forEach(relief_request => {
+                if( relief_request.current_status === "pending" ){
+                    btnClass = "btn-pending";
+                }else if(relief_request.current_status === "viewed"){
+                    btnClass = "btn-viewed";
+                }else{
+                    btnClass = "btn-reject";
+                }
+//  let btnClass = relief_request.current_status === "pending" 
+//         ? "btn-pending" 
+//         : "btn-viewed";
+                allRequestsTable.innerHTML += `
+    <tr>
+
+    <td>${relief_request.type_of_relief}</td>
+    <td>${relief_request.flood_level}</td>
+    <td>${relief_request.divisional_secretariat}</td>
+    <td>${relief_request.gn_division}</td>
+    <td>${relief_request.contact_person_name}</td>
+    <td>${relief_request.contact_number}</td>
+    <td>${relief_request.address}</td>
+    <td>${relief_request.num_of_family_members}</td>
+    <td>${relief_request.description}</td>
+    <td>${relief_request.district}</td>
+    <td>${relief_request.current_status}</td>
+    <td>${relief_request.created_at}</td>
+    <td>${relief_request.NIC}</td>
+    
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
+     </tr>
+    `;
+
+            })
+        });
   }
   
 document.addEventListener("DOMContentLoaded", () => {
