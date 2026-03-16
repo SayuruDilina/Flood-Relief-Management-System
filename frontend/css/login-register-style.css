@@ -12,6 +12,20 @@ body {
 
 }
 
+.login-logo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.register-logo {
+  width: 230px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
 .brand-highlight {
   color: var(--dark-teal);
   font-family: var(--body-font);

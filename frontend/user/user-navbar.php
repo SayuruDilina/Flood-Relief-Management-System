@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+$current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
 
@@ -12,16 +14,16 @@ session_start();
             <div class="collapse navbar-collapse" id="aquaNavbar">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="./home.php">Home</a>
+                        <a class="nav-link <?php echo ($current_page == 'home.php') ? 'active' : ''; ?>" href="./home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./user-relief-form.php">New Request</a>
+                        <a class="nav-link <?php echo ($current_page == 'user-relief-form.php') ? 'active' : ''; ?>" href="./user-relief-form.php">New Request</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./view-relief-request.php">My Requests</a>
+                        <a class="nav-link <?php echo ($current_page == 'view-relief-request.php') ? 'active' : ''; ?>" href="./view-relief-request.php">My Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./user-profile.php">Profile</a>
+                        <a class="nav-link <?php echo ($current_page == 'user-profile.php') ? 'active' : ''; ?>" href="./user-profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <?php if(isset($_SESSION["user_id"])) { ?>
