@@ -26,11 +26,10 @@
   }
 
   if($_SERVER['REQUEST_METHOD']=='PUT'){
-     $data = json_decode(file_get_contents("php://input"), true);
-     $id=$data['id'];
+     
+     $id=$_GET['id'];
     
-      $sql="Update emergency_alerts SET status='inactive'  FROM emergency_alerts WHERE id=$id"; ;
-
+   $sql = "UPDATE emergency_alerts SET status='inactive' WHERE id=$id";
     if($conn->query($sql)){
       echo json_encode([
               "status"=>"ok",
@@ -48,14 +47,14 @@
 
   if($_SERVER['REQUEST_METHOD']=='GET'){
      $data = json_decode(file_get_contents("php://input"), true);
-     $id=$data['id'];
     
-      $sql="SELECT * FROM emergency_alerts WHERE status='active'"; ;
+    
+      $sql="SELECT * FROM emergency_alerts"; 
 
      $result = $conn->query($sql);
-
+    $alerts = [];
     if($result){
-        $alerts = [];
+    
 
         while($row = $result->fetch_assoc()){
             $alerts[] = $row;

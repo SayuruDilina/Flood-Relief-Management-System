@@ -16,17 +16,17 @@
           <div class="card alert-card shadow-sm p-4 h-100">
                 <h5 class="fw-bold mb-4">Update Home Page Banner</h5>
                 
-                <form action="#" method="POST">
+                <div action="#" method="POST">
                     <div class="mb-4">
                         <label class="form-label small fw-bold text-muted">EMERGENCY ALERT MESSAGE</label>
                         <textarea id="alert_msg" maxlength="250" class="form-control border bg-light" name="alert_msg" rows="4" 
                         style="border-radius: 10px;" placeholder="Type the emergency alert message..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn alert-btn w-100 fw-bold py-3 text-white">
+                    <button onclick="addAlert()" type="button" class="btn alert-btn w-100 fw-bold py-3 text-white">
                         <i class="fas fa-bullhorn me-2"></i> UPDATE ALERT
                     </button>
-                </form>
+</div>
           </div>
         </div>
 
@@ -60,7 +60,7 @@
                               <th>Actions</th>
                           </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="alertTable">
                           <tr class="table-light">
                               <td class="text-nowrap">13/03/2026</td>
                               <td class="text-overflow">Heavy rainfall expected in Western Province.</td>
@@ -68,11 +68,8 @@
                                   <span class="badge rounded-pill text-bg px-3">Active</span>
                               </td>
                               <td>
-                                  <form action="update_alert.php" method="POST" class="d-flex align-items-center">
-                                      <input type="hidden" name="alert_id" value="1">
-                                      <button type="submit" name="action" value="deactivate" class="btn btn-stop">Stop
-                                      </button>
-                                  </form>
+                                                              <button type="submit" name="action" value="deactivate" class="btn btn-stop">Stop
+                                    
                               </td>
                           </tr>
                       </tbody>

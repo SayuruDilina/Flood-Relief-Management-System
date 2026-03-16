@@ -1094,7 +1094,85 @@ function getAllMedicineRequestCount() {
             })
         });
   }
+
+  function addAlert(){
+    const message=document.getElementById("alert_msg").value;
+    const payload = {message};
+    fetch("http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if(data.status === "ok"){
+                alert(data.message);
+            }
+        });
+  }
   
+  function viewAlerts(){
+    fetch("http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const alertTable = document.getElementById("alertTable");
+            alertTable.innerHTML = "";
+          
+            data.data.forEach(alert => {
+                alertTable.innerHTML += `
+                    <tr>
+                        <td>${alert.message}</td>
+                        <td>${alert.createDate}</td>
+                        <td>
+                          <span class="badge rounded-pill text-bg px-3">${alert.status}</span>
+                          </td>
+                       
+                        <td><button type="button" onclick="inactiveAlert(${alert.id})" value="deactivate" class="btn btn-stop">Stop</button></td>
+                    </tr>
+                `;
+            });
+        });
+  }
+
+  function inactiveAlert(id){
+    console.log(id);
+    
+    fetch(`http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php?id=${id}`,{
+        method: "PUT"
+    })
+     .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if(data.status === "ok"){
+                alert(data.message);
+                viewAlerts();
+            }
+        });
+  }
+  function viewAlertsForUsers(){
+    fetch("http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert_view_users.php")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+                const alertContainer = document.getElementById("alertts");
+        alertContainer.innerHTML = "";
+
+        data.data.forEach(alert => {
+            alertContainer.innerHTML += `
+            <div class="alert alert-danger">
+                <strong>Emergency Alert:</strong> ${alert.message}
+            </div>
+            `;
+        });
+    });
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     getAllReliefRequestSpecificUser();
     getAllPendingRequests();
@@ -1114,5 +1192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mediumRequestCount();
     lowSeverityCasesCount();
     recentlyRegisterdCount();
+    viewAlerts();
+    viewAlertsForUsers();
 });
 
