@@ -39,9 +39,6 @@ body {
     font-weight: 500;
     border-radius: 50px;
 }
-span{
-    color: var(--primary-teal);
-}
 
 .filter-select{
     background-color: var(--bg-light);
