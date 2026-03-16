@@ -125,7 +125,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <th>Current Status</th>
                             <th>Created At</th>
                             <th>NIC</th>
-                            <th>Accept</th>
+                            <th>Approve</th>
                             <th>Reject</th>
                     </tr>
                 </thead>
@@ -144,7 +144,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <td></td>
                         <td></td>
                         <td>
-                            <button class="btn-viewed">Viewed</button>
+                            <button class="btn-viewed">Approve</button>
                         </td>
                     </tr>
                 </tbody>
