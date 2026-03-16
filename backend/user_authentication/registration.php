@@ -49,12 +49,12 @@
          `DOB`) VALUES('$username','$hashedPassword','$fullname',
          '$contact_number','$email','$NIC',
          '$gender','$street_address','$city',
-         '$district','$province','$DOB')"; ;
+         '$district','$province','$DOB')";  
 
     if($conn->query($sql)){
       echo json_encode([
               "status"=>"ok",
-              "message" =>"Username registerd successfully"
+              "message" =>"User registerd successfully"
           ]);
              exit();
     }
