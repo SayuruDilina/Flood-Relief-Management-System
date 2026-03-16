@@ -79,7 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <th>Current Status</th>
                             <th>Created At</th>
                             <th>NIC</th>
-                            <th>ACCEPT</th>
+                            <th>APPROVE</th>
                              <th>REJECT</th>
                         </tr>
                     </thead>

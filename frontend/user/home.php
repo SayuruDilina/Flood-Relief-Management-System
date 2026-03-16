@@ -39,16 +39,13 @@
             </div>
         </div>
 
-        <div class="alert shadow-sm border-0 d-flex">
-            <i class="fas fa-exclamation-triangle text-danger me-3 fs-4"></i>
-           <div id="alertts">
-                <div>
-                <strong>Emergency Alert:</strong> Heavy rainfall expected in Western Province. Please stay updated with
-                our Safety Alerts.
+       
+           
+                <div id="alertts">
+                
             </div>
-           </div>
-          
-        </div>
+           
+        
     </div>
 
     <?php include './user-footer.php'; 

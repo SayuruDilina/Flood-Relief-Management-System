@@ -275,10 +275,19 @@ function getAllReliefRequestSpecificUser() {
                 const deleteModalId = `deleteModal_${relief_request.relief_id}`;
 
                 if (relief_request.current_status === "pending") {
-                    statusColor = "yellow";
+                    statusColor = "var(--warning)";
                 }
-                else if (relief_request.current_status === "viewed") {
-                    statusColor = "limegreen";
+                else if (relief_request.current_status === "approved") {
+                    statusColor = "var(--success)";
+                }else{
+                    statusColor = "var(--danger)";
+                }
+                if(relief_request.flood_level === "High"){
+                    floodLevelColor = "var(--danger)";
+                }else if(relief_request.flood_level === "Medium"){
+                    floodLevelColor = "var(--warning)";
+                }else{
+                    floodLevelColor = "var(--success)";
                 }
                 reliefRContainer.innerHTML += `
         <div class="hn-card-container">
@@ -288,7 +297,7 @@ function getAllReliefRequestSpecificUser() {
                     <span class="status" style="color: ${statusColor}">
                         ${relief_request.current_status}
                     </span>
-                    <span id="flood_level" class="status high">${relief_request.flood_level}</span>
+                    <span style="background-color: ${floodLevelColor} ;color:var(--bg-light)" id="flood_level" class="status">${relief_request.flood_level}</span>
                 </div>
 
                 <div class="card-body">
@@ -533,7 +542,7 @@ function getAllPendingRequests() {
             data.forEach(relief_request => {
    if( relief_request.current_status === "pending" ){
                     btnClass = "btn-pending";
-                }else if(relief_request.current_status === "viewed"){
+                }else if(relief_request.current_status === "approved"){
                     btnClass = "btn-viewed";
                 }else{
                     btnClass = "btn-reject";
@@ -554,7 +563,7 @@ function getAllPendingRequests() {
     <td>${relief_request.current_status}</td>
     <td>${relief_request.created_at}</td>
     <td>${relief_request.NIC}</td>
-    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'approved')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
     `;
@@ -689,7 +698,7 @@ function getAllReleifRequests() {
             data.forEach(relief_request => {
                 if( relief_request.current_status === "pending" ){
                     btnClass = "btn-pending";
-                }else if(relief_request.current_status === "viewed"){
+                }else if(relief_request.current_status === "approved"){
                     btnClass = "btn-viewed";
                 }else{
                     btnClass = "btn-reject";
@@ -714,7 +723,7 @@ function getAllReleifRequests() {
     <td>${relief_request.created_at}</td>
     <td>${relief_request.NIC}</td>
     
-    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'approved')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
     `;
@@ -1061,7 +1070,7 @@ function getAllMedicineRequestCount() {
             data.data.forEach(relief_request => {
                 if( relief_request.current_status === "pending" ){
                     btnClass = "btn-pending";
-                }else if(relief_request.current_status === "viewed"){
+                }else if(relief_request.current_status === "approved"){
                     btnClass = "btn-viewed";
                 }else{
                     btnClass = "btn-reject";
@@ -1086,7 +1095,7 @@ function getAllMedicineRequestCount() {
     <td>${relief_request.created_at}</td>
     <td>${relief_request.NIC}</td>
     
-    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'viewed')"> ${relief_request.current_status}</button></td>
+    <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'approved')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
     `;
@@ -1164,8 +1173,11 @@ function getAllMedicineRequestCount() {
 
         data.data.forEach(alert => {
             alertContainer.innerHTML += `
-            <div class="alert alert-danger">
-                <strong>Emergency Alert:</strong> ${alert.message}
+             <div class="alert shadow-sm border-0 d-flex mb-2">
+                <i class="fas fa-exclamation-triangle text-danger me-3 fs-4"></i>
+                <div>
+                    <strong>Emergency Alert:</strong> ${alert.message}
+                </div>
             </div>
             `;
         });
