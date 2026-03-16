@@ -2,6 +2,8 @@
   <?php include './user-navbar.php';
   ?>
 
+<body style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/bg-img-04.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+
   <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

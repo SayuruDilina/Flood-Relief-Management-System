@@ -4,9 +4,13 @@
   
     <div class="content-card">
       <div class="register-card">
+        <div class="brand-section">
+                <a href="../user/home.php"><img src="../images/aquarelief-logo.png" alt="AquaRelief Logo" class="register-logo me-2">
+                </a>
+        </div>
         <div class="text-center mb-5">
-          <h1 class="brand-title">Aqua<span class=" mb-3 brand-highlight">Relief</span></h1>
-          <p class="text-muted">Create your account to request relief and assistance.</p>
+          <!-- <h1 class="brand-title">Aqua<span class=" mb-3 brand-highlight">Relief</span></h1> -->
+          <p class="text-muted ">Create your account to request relief and assistance.</p>
         </div>
 
         <form id="registrationForm">

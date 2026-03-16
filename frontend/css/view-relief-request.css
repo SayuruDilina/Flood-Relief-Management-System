@@ -17,6 +17,7 @@ body {
     border-left: 6px solid var(--primary-teal);
     padding-left: 15px;
     padding-bottom: 5px;
+    color: white;
 }
 
 .relief-card {

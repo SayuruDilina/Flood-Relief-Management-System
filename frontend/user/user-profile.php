@@ -3,6 +3,8 @@ include '../common/header.php';
 include './user-navbar.php';
 ?>
 
+<body style="background: linear-gradient(rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.3)), url('../images/bg-img-06.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+
     <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
