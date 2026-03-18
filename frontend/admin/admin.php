@@ -59,8 +59,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <div class="av-table-box">
             <div class="av-table-header">
-                <h5 class="fw-bold mb-4">Recent Incoming Requests</h5>
-                <a class="view-all-link" href="total-relief-requests.php">View All</a>
+                <h5 class="fw-bold mb-4">Recent High Severity Requests</h5>
             </div>
             <div class="av-table-wrapper">
                 <table class="av-table-new">
@@ -68,18 +67,13 @@ if (session_status() === PHP_SESSION_NONE) {
                         <tr>
                             <th>Relief Type</th>
                             <th>Severity Type</th>
-                            <th>Divisional Secretariat</th>
-                            <th>GN Division</th>
+                            <th>District</th>
                             <th>Contact Person</th>
+                            <th>NIC</th>
                             <th>Contact Number</th>
                             <th>Address</th>
-                            <th>No Of Family Members</th>
-                            <th>Description</th>
-                            <th>District</th>
-                            <th>Current Status</th>
-                            <th>Created At</th>
-                            <th>NIC</th>
-                            <th>APPROVE</th>
+                             <th>Description</th>
+                            <th>Status</th>
                              <th>REJECT</th>
                         </tr>
                     </thead>
@@ -100,6 +94,16 @@ if (session_status() === PHP_SESSION_NONE) {
     </main>
 </div>
 <?php } ?>
+
+<script>
+   document.addEventListener("DOMContentLoaded", () => {
+          getAllPendingRequests();
+          totalUserCount();
+          highSeverityCasesCountDash();
+          pendingReliefRequestCount();
+    })
+    
+</script>
   
 
 

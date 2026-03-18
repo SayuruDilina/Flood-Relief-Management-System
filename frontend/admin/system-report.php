@@ -115,9 +115,9 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
         </div>
         <div class="col-md-2">
-            <div class="metric-card text-center border-bottom border-Secondary border-4">
+            <div class="metric-card text-center border-bottom border-dark border-4">
                 <div class="small text-muted fw-bold mb-1">Shelter Requests</div>
-                <div class="metric-value fw-bold text-Secondary" id="shelterCount">0</div>
+                <div class="metric-value fw-bold text-dark" id="shelterCount">0</div>
             </div>
         </div>
     </div>
@@ -133,7 +133,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <th>Area</th>
                         <th>Request Type</th>
                         <th>Severity</th>
-                        <th class="text-end">Actions</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody id="reportTable">
@@ -174,6 +174,13 @@ if (session_status() === PHP_SESSION_NONE) {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
+    totalUserCount();
+    highServeritySystemReports() ;
+    getAllRequestForSystemReports();
+    getAllFoodRequestCount();
+    getAllMedicineRequestCount();
+    getAllWaterRequestCount();
+    getALLShelterRequests();
     const districtFilter = document.getElementById("districtFilter");
     const reliefFilter = document.getElementById("reliefFilter");
    
@@ -204,6 +211,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
 });
+
+
 </script> 
 
 

@@ -217,6 +217,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <?php } ?>
 <?php 
+
 include './user-footer.php';
 include '../common/footer.php';
 ?>
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+          setUserProfileInfro();
+          
+    })
+</script>

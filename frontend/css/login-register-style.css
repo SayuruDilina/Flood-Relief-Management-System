@@ -66,7 +66,7 @@ body {
 
 }
 
-/* Form Controls */
+
 .form-label {
   font-size: 0.85rem;
   font-weight: 600;
@@ -108,7 +108,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Links */
+
 .create-link {
   color: var(--primary-teal);
   text-decoration: none;

@@ -48,6 +48,13 @@
         
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+         viewAlertsForUsers();
+          
+    })
+
+    </script>
     <?php include './user-footer.php'; 
     ?>
     <?php include '../common/footer.php'; 

@@ -91,4 +91,13 @@
         }
     });
 
+   document.addEventListener("DOMContentLoaded", () => {
+       viewAlerts();
+    })
+    
+
+  
+
+
+
 </script>

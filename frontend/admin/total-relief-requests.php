@@ -165,6 +165,18 @@ if (session_status() === PHP_SESSION_NONE) {
 
     document.getElementById("today-date").innerText =
         today.toLocaleDateString('en-GB', dateOptions);
+
+        
+
+   document.addEventListener("DOMContentLoaded", () => {
+          totalReliefRequestCount();
+          lowSeverityCasesCount();
+          mediumRequestCount();
+          getAllReleifRequests();
+          highSeverityForReleifReq();
+    })
+    
+
 </script>
 
 <?php

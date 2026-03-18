@@ -89,7 +89,7 @@
     border-color: #c53030;
 }
 
-/* Stop btn Disabled state */
+
 .btn-stop:disabled {
     background-color: #edf2f7;
     border-color: #e2e8f0;

@@ -1,8 +1,4 @@
-console.log("test update");
-
 function registerUser() {
-    console.log("function reached");
-    console.log("test");
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
@@ -196,7 +192,7 @@ function updateProfile() {
 }
 
 function createReliefRequest() {
-    // const user_id=1;
+   
     const type_of_relief = document.getElementById("type_of_relief").value.trim();
     console.log(type_of_relief);
     const devisional_secretariat = document.getElementById("devisional_secretariat").value.trim();
@@ -214,7 +210,7 @@ function createReliefRequest() {
 
 
     const payload = {
-        // user_id,
+       
         type_of_relief,
         devisional_secretariat,
         gn_devision,
@@ -261,7 +257,7 @@ function createReliefRequest() {
 
 }
 function getAllReliefRequestSpecificUser() {
-    // const user_id=1;
+   
     fetch(`http://localhost/flood-Relief-Management-System/backend/relief_management/user_relief_request.php`, {
         method: "GET"
     }).then(response => response.json())
@@ -279,14 +275,14 @@ function getAllReliefRequestSpecificUser() {
                 }
                 else if (relief_request.current_status === "approved") {
                     statusColor = "var(--success)";
-                }else{
+                } else {
                     statusColor = "var(--danger)";
                 }
-                if(relief_request.flood_level === "High"){
+                if (relief_request.flood_level === "High") {
                     floodLevelColor = "var(--danger)";
-                }else if(relief_request.flood_level === "Medium"){
+                } else if (relief_request.flood_level === "Medium") {
                     floodLevelColor = "var(--warning)";
-                }else{
+                } else {
                     floodLevelColor = "var(--success)";
                 }
                 reliefRContainer.innerHTML += `
@@ -538,31 +534,34 @@ function getAllPendingRequests() {
             const highPendingRequestsTable = document.getElementById("highPendingRequestsTable");
             highPendingRequestsTable.innerHTML = "";
 
-           
+let floodLevelColor = "";
             data.forEach(relief_request => {
-   if( relief_request.current_status === "pending" ){
+                if (relief_request.current_status === "pending") {
                     btnClass = "btn-pending";
-                }else if(relief_request.current_status === "approved"){
+                } else if (relief_request.current_status === "approved") {
                     btnClass = "btn-viewed";
-                }else{
+                } else {
                     btnClass = "btn-reject";
+                }
+
+                 if (relief_request.flood_level === "High") {
+                    floodLevelColor = "var(--danger)";
+                } else if (relief_request.flood_level === "Medium") {
+                    floodLevelColor = "var(--warning)";
+                } else {
+                    floodLevelColor = "var(--success)";
                 }
                 highPendingRequestsTable.innerHTML += `
     <tr>
 
     <td>${relief_request.type_of_relief}</td>
-    <td>${relief_request.flood_level}</td>
-    <td>${relief_request.divisional_secretariat}</td>
-    <td>${relief_request.gn_division}</td>
+    <td style="color:${floodLevelColor}">${relief_request.flood_level}</td>
+    <td>${relief_request.district}</td>
     <td>${relief_request.contact_person_name}</td>
+    <td>${relief_request.NIC}</td>
     <td>${relief_request.contact_number}</td>
     <td>${relief_request.address}</td>
-    <td>${relief_request.num_of_family_members}</td>
     <td>${relief_request.description}</td>
-    <td>${relief_request.district}</td>
-    <td>${relief_request.current_status}</td>
-    <td>${relief_request.created_at}</td>
-    <td>${relief_request.NIC}</td>
     <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'approved')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
      </tr>
@@ -574,13 +573,13 @@ function getAllPendingRequests() {
 
 }
 
-function takeActionRequest(relief_id,status) {
+function takeActionRequest(relief_id, status) {
     console.log(relief_id);
-const payload = {
-    relief_id: relief_id,
-    status: status
-}
-console.log(payload);
+    const payload = {
+        relief_id: relief_id,
+        status: status
+    }
+    console.log(payload);
 
     fetch(`http://localhost/flood-Relief-Management-System/backend/relief_management/admin_relief_request.php`, {
         method: 'PUT',
@@ -620,16 +619,16 @@ function pendingReliefRequestCount() {
             document.getElementById("pendingRequests").innerText = data.pending_cases;
         })
 }
-function mediumRequestCount(){
+function mediumRequestCount() {
 
     fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/medium_req_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            const count =Math.round(data.total_cases / totalReqCount * 100);
-            document.getElementById("mediumSeverity").innerText = count+"%";
-            document.getElementById("mediumSeverityBarWidth").style.width=count;
-          
+            const count = Math.round(data.total_cases / totalReqCount * 100);
+            document.getElementById("mediumSeverity").innerText = count + "%";
+            document.getElementById("mediumSeverityBarWidth").style.width = count;
+
         })
 }
 
@@ -638,14 +637,14 @@ function lowSeverityCasesCount() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            const count =Math.round(data.total_cases / totalReqCount * 100);
-            document.getElementById("lowSeverity").innerText = count+"%";
-            document.getElementById("lowSeverityBar").style.width=count;
-          
-        }) 
+            const count = Math.round(data.total_cases / totalReqCount * 100);
+            document.getElementById("lowSeverity").innerText = count + "%";
+            document.getElementById("lowSeverityBar").style.width = count;
+
+        })
 }
-function highSeverityCasesCountDash(){
- fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/high_flood_count.php")
+function highSeverityCasesCountDash() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/high_flood_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -653,7 +652,7 @@ function highSeverityCasesCountDash(){
             document.getElementById("highSeverityCases").innerHTML = data.total_cases;
         })
 }
-function recentlyRegisterdCount(){
+function recentlyRegisterdCount() {
     fetch("http://localhost/flood-Relief-Management-System/backend/user_management/count_recent_registerd_users.php")
         .then(response => response.json())
         .then(data => {
@@ -666,23 +665,41 @@ function highSeverityCasesCount() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            console.log(totalReqCount);
-            
-            const count =Math.round(data.total_cases / totalReqCount * 100);
-          document.getElementById("highSeverityBar").innerText =count+"%";
-         document.getElementById("highSeverityBarWidth").style.width=count;
-          document.getElementById("highSeverity").innerHTML = data.total_cases;
             document.getElementById("highSeverityCases").innerHTML = data.total_cases;
         })
+
+
 }
-let totalReqCount=0;
+
+function highSeverityForReleifReq() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/high_flood_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            console.log(totalReqCount);
+
+            const count = Math.round(data.total_cases / totalReqCount * 100);
+            document.getElementById("highSeverityBar").innerText = count + "%";
+            document.getElementById("highSeverityBarWidth").style.width = count;
+
+        })
+}
+function highServeritySystemReports() {
+    fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/high_flood_count.php")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("highSeverity").innerHTML = data.total_cases;
+        })
+}
+let totalReqCount = 0;
 function totalReliefRequestCount() {
     fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/total_relief_requests_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
-          totalReqCount=document.getElementById("totalRequests").innerText = data.total_cases;
-          highSeverityCasesCount();
+            totalReqCount = document.getElementById("totalRequests").innerText = data.total_cases;
+            highSeverityCasesCount();
         })
 }
 
@@ -694,18 +711,16 @@ function getAllReleifRequests() {
 
             const allRequestsTable = document.getElementById("allRequestsTable");
             allRequestsTable.innerHTML = "";
-      let btnClass;
+            let btnClass;
             data.forEach(relief_request => {
-                if( relief_request.current_status === "pending" ){
+                if (relief_request.current_status === "pending") {
                     btnClass = "btn-pending";
-                }else if(relief_request.current_status === "approved"){
+                } else if (relief_request.current_status === "approved") {
                     btnClass = "btn-viewed";
-                }else{
+                } else {
                     btnClass = "btn-reject";
                 }
-//  let btnClass = relief_request.current_status === "pending" 
-//         ? "btn-pending" 
-//         : "btn-viewed";
+              
                 allRequestsTable.innerHTML += `
     <tr>
 
@@ -806,10 +821,7 @@ function getReportFilterByArea() {
             </button>
         </td>
     `;
-    // Attach click listener here
-   
-
-    reportTable.appendChild(tr);
+                
             });
 
 
@@ -858,8 +870,8 @@ function getReportFilterByRelief() {
             const reportTable = document.getElementById("reportTable");
             reportTable.innerHTML = "";
             data.relief_requests.forEach(relief_request => {
-            const tr = document.createElement("tr");
-    tr.innerHTML = `
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
         <td>${relief_request.user_id}</td>
         <td><strong>${relief_request.fullname}</strong></td>
         <td>${relief_request.district}</td>
@@ -871,8 +883,8 @@ function getReportFilterByRelief() {
             </button>
         </td>
     `;
-    // Attach click listener here
-  reportTable.appendChild(tr);
+               
+                reportTable.appendChild(tr);
 
             });
 
@@ -885,16 +897,15 @@ function navigate(user_id) {
 
 function getUserReports(user_id) {
     console.log("test");
-    
+
     fetch(`http://localhost/flood-Relief-Management-System/backend/system_reports/user_report.php?user_id=${user_id}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
- if(data.status !== "ok") return;
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status !== "ok") return;
 
             const user = data.user;
 
-            // Fill personal info
             document.getElementById("userFullname").innerHTML = user.fullname;
             document.getElementById("userDOB").innerText = user.dob;
             document.getElementById("userNIC").innerText = user.nic;
@@ -903,9 +914,9 @@ function getUserReports(user_id) {
             document.getElementById("userEmail").innerText = user.email;
             document.getElementById("userRegisterDate").innerText = user.register_date;
 
-            // Populate relief requests table
+           
             const tableBody = document.getElementById("reliefRequestTable");
-            tableBody.innerHTML = ""; // clear previous
+            tableBody.innerHTML = ""; 
 
             data.relief_requests.forEach(req => {
                 const tr = document.createElement("tr");
@@ -918,24 +929,24 @@ function getUserReports(user_id) {
                 tableBody.appendChild(tr);
             });
 
-         window.location.href = "../user/user-summary-report.php";
+            window.location.href = "../user/user-summary-report.php";
 
         })
         .catch(err => console.error("Error fetching user report:", err));
 
-   
+
 }
 
 function getAllUsers() {
     fetch("http://localhost/flood-Relief-Management-System/backend/user_management/admin_users_manage.php")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        const registeredUsersTable= document.getElementById("registeredUsersTable");
-registeredUsersTable.innerHTML = "";
-data.forEach(user => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const registeredUsersTable = document.getElementById("registeredUsersTable");
+            registeredUsersTable.innerHTML = "";
+            data.forEach(user => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
       <td>${user.user_id}</td>
           <td>${user.NIC}</td>
         <td>${user.fullname}</td>
@@ -953,62 +964,69 @@ data.forEach(user => {
 
                         </td>
     `;
-    registeredUsersTable.appendChild(tr);
-})
+                registeredUsersTable.appendChild(tr);
+            })
 
+        })
+}
+
+function deleteUser(user_id) {
+    fetch(`http://localhost/flood-Relief-Management-System/backend/user_management/admin_users_manage.php?user_id=${user_id}`, {
+        method: "DELETE"
     })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status == "ok") {
+                alert(data.message);
+                getAllUsers();
+            } else {
+                alert(data.message);
+            }
+
+        })
 }
-
-function deleteUser(user_id){
-fetch(`http://localhost/flood-Relief-Management-System/backend/user_management/admin_users_manage.php?user_id=${user_id}`,{
-    method:"DELETE"
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-    if(data.status== "ok") {
-        alert(data.message);
-        getAllUsers();
-    }else{
-        alert(data.message);
-    }
-   
-})
-}
-function getAllRequestForSystemReports(){
+function getAllRequestForSystemReports() {
 
 
- fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/admin_relief_request.php")
+    fetch("http://localhost/flood-Relief-Management-System/backend/relief_management/admin_relief_request.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
 
- document.getElementById("foodCount").innerHTML = data.total_food_request;
+            document.getElementById("foodCount").innerHTML = data.total_food_request;
             document.getElementById("waterCount").innerText = data.total_water_request;
             document.getElementById("medicineCount").innerText = data.total_medicine_request;
             document.getElementById("shelterCount").innerText = data.total_shelter_request;
             const reportTable = document.getElementById("reportTable");
             reportTable.innerHTML = "";
-let color="";
+            let color = "";
+            let floodLevelColor = "";
             data.forEach(relief_request => {
-   if( relief_request.current_status === "pending" ){
-                  color = "var(--warning)";
-                }else if(relief_request.current_status === "viewed"){
-                   color = "var(--success)";
-                }else{
-                  color = "var(--danger)";
+                if (relief_request.current_status === "pending") {
+                    color = "var(--warning)";
+                } else if (relief_request.current_status === "approved") {
+                    color = "var(--success)";
+                } else {
+                    color = "var(--danger)";
                 }
-        //       let btnClass = relief_request.current_status === "pending" 
-        // ? "btn-pending" 
-        // : "btn-viewed";
+
+                if (relief_request.flood_level === "High") {
+                    floodLevelColor = "var(--danger)";
+                } else if (relief_request.flood_level === "Medium") {
+                    floodLevelColor = "var(--warning)";
+                } else {
+                    floodLevelColor = "var(--success)";
+                }
               
+
                 reportTable.innerHTML += `
     <tr>
     <td>${relief_request.user_id}</td>
      <td>${relief_request.contact_person_name}</td>
      <td>${relief_request.district}</td>
       <td>${relief_request.type_of_relief}</td>
-          <td>${relief_request.flood_level}</td>
+          <td style="color:${floodLevelColor}; ">${relief_request.flood_level}</td>
         <td style="color:${color}; font-weight:bold;">${relief_request.current_status}</td>
     
     
@@ -1027,7 +1045,7 @@ function getAllFoodRequestCount() {
             console.log(data);
             document.getElementById("foodCount").innerHTML = data.total_flood_count;
         })
-  }
+}
 
 function getAllMedicineRequestCount() {
     fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_medicine_req_count.php")
@@ -1036,48 +1054,46 @@ function getAllMedicineRequestCount() {
             console.log(data);
             document.getElementById("medicineCount").innerHTML = data.total_medicine_count;
         })
-  }
+}
 
-  function getAllWaterRequestCount() {
+function getAllWaterRequestCount() {
     fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_water_req_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
             document.getElementById("waterCount").innerHTML = data.total_water_count;
         })
-  }
- 
-  function getALLShelterRequests(){
+}
+
+function getALLShelterRequests() {
     fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_shelter_req_count.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
             document.getElementById("shelterCount").innerHTML = data.total_Shelter_count;
         })
-  }
+}
 
-  function searchRequestByNIC(){
+function searchRequestByNIC() {
     const nic = document.getElementById("search-nic").value;
     console.log(nic);
-    
+
     fetch(`http://localhost/flood-Relief-Management-System/backend/relief_management/search_relief_request.php?nic=${nic}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
-           const allRequestsTable = document.getElementById("allRequestsTable");
+            const allRequestsTable = document.getElementById("allRequestsTable");
             allRequestsTable.innerHTML = "";
-      let btnClass;
+            let btnClass;
             data.data.forEach(relief_request => {
-                if( relief_request.current_status === "pending" ){
+                if (relief_request.current_status === "pending") {
                     btnClass = "btn-pending";
-                }else if(relief_request.current_status === "approved"){
+                } else if (relief_request.current_status === "approved") {
                     btnClass = "btn-viewed";
-                }else{
+                } else {
                     btnClass = "btn-reject";
                 }
-//  let btnClass = relief_request.current_status === "pending" 
-//         ? "btn-pending" 
-//         : "btn-viewed";
+          
                 allRequestsTable.innerHTML += `
     <tr>
 
@@ -1093,7 +1109,7 @@ function getAllMedicineRequestCount() {
     <td>${relief_request.district}</td>
     <td>${relief_request.current_status}</td>
     <td>${relief_request.created_at}</td>
-    <td>${relief_request.NIC}</td>
+    <td>${relief_request.nic}</td>
     
     <td> <button type="button" class=${btnClass} onclick="takeActionRequest(${relief_request.relief_id},'approved')"> ${relief_request.current_status}</button></td>
     <td> <button type="button" class="btn-reject" onclick="takeActionRequest(${relief_request.relief_id},'rejected')">Reject</button></td>
@@ -1102,11 +1118,11 @@ function getAllMedicineRequestCount() {
 
             })
         });
-  }
+}
 
-  function addAlert(){
-    const message=document.getElementById("alert_msg").value;
-    const payload = {message};
+function addAlert() {
+    const message = document.getElementById("alert_msg").value;
+    const payload = { message };
     fetch("http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php", {
         method: "POST",
         headers: {
@@ -1117,20 +1133,20 @@ function getAllMedicineRequestCount() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            if(data.status === "ok"){
+            if (data.status === "ok") {
                 alert(data.message);
             }
         });
-  }
-  
-  function viewAlerts(){
+}
+
+function viewAlerts() {
     fetch("http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);
             const alertTable = document.getElementById("alertTable");
             alertTable.innerHTML = "";
-          
+
             data.data.forEach(alert => {
                 alertTable.innerHTML += `
                     <tr>
@@ -1145,34 +1161,34 @@ function getAllMedicineRequestCount() {
                 `;
             });
         });
-  }
+}
 
-  function inactiveAlert(id){
+function inactiveAlert(id) {
     console.log(id);
-    
-    fetch(`http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php?id=${id}`,{
+
+    fetch(`http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert.php?id=${id}`, {
         method: "PUT"
     })
-     .then(response => response.json())
+        .then(response => response.json())
         .then(data => {
             console.log(data);
-            if(data.status === "ok"){
+            if (data.status === "ok") {
                 alert(data.message);
                 viewAlerts();
             }
         });
-  }
-  function viewAlertsForUsers(){
+}
+function viewAlertsForUsers() {
     fetch("http://localhost/flood-Relief-Management-System/backend/emergency_alert/emergency_alert_view_users.php")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
 
-                const alertContainer = document.getElementById("alertts");
-        alertContainer.innerHTML = "";
+            const alertContainer = document.getElementById("alertts");
+            alertContainer.innerHTML = "";
 
-        data.data.forEach(alert => {
-            alertContainer.innerHTML += `
+            data.data.forEach(alert => {
+                alertContainer.innerHTML += `
              <div class="alert shadow-sm border-0 d-flex mb-2">
                 <i class="fas fa-exclamation-triangle text-danger me-3 fs-4"></i>
                 <div>
@@ -1180,31 +1196,9 @@ function getAllMedicineRequestCount() {
                 </div>
             </div>
             `;
+            });
         });
-    });
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    getAllReliefRequestSpecificUser();
-    getAllPendingRequests();
-    totalUserCount();
-    pendingReliefRequestCount();
-    //highSeverityCasesCount();
-    highSeverityCasesCountDash();
-    totalReliefRequestCount();
-    getAllReleifRequests();
-    setUserProfileInfro();
-    getAllUsers();
-    getAllRequestForSystemReports();
-    getAllFoodRequestCount();
-    getAllMedicineRequestCount();
-    getAllWaterRequestCount();
-    getALLShelterRequests();
-    mediumRequestCount();
-    lowSeverityCasesCount();
-    recentlyRegisterdCount();
-    viewAlerts();
-    viewAlertsForUsers();
-});
 

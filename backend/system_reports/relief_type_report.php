@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $stmtRelief->bind_param("s", $type_of_relief);
     $stmtRelief->execute();
     $reliefResult = $stmtRelief->get_result();
-   // $count = $result->num_rows;
+   
 
 
     $relief_requests = [];
