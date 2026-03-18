@@ -9,7 +9,7 @@
                 </a>
         </div>
         <div class="text-center mb-5">
-          <!-- <h1 class="brand-title">Aqua<span class=" mb-3 brand-highlight">Relief</span></h1> -->
+        
           <p class="text-muted ">Create your account to request relief and assistance.</p>
         </div>
 

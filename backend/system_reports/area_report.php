@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $stmtRelief->bind_param("s", $district);
     $stmtRelief->execute();
     $reliefResult = $stmtRelief->get_result();
-   // $count = $result->num_rows;
+  
  $relief_requests = [];
     while ($row = $reliefResult->fetch_assoc()) {
         $relief_requests[] = $row;

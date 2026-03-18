@@ -235,6 +235,10 @@ body {
     background: var(--success);
     color: white;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -246,6 +250,10 @@ body {
     width: 80px;
     background: var(--warning);
     color: white;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-weight: 700;
     border: none;
     border-radius: 0.5rem;

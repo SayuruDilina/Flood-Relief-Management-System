@@ -150,7 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const user = data.user;
             document.getElementById("reportId").innerText = `REF: #${user_id}`;
 
-           
+           let floodLevelColor = "";
+        let color="";
             document.getElementById("userFullname").innerText = user.fullname;
             document.getElementById("userDOB").innerText = user.DOB;
             document.getElementById("userNIC").innerText = user.NIC;
@@ -165,12 +166,28 @@ document.addEventListener("DOMContentLoaded", () => {
             tableBody.innerHTML = "";
 
             data.relief_requests.forEach(req => {
+                      if (req.flood_level === "High") {
+                    floodLevelColor = "var(--danger)";
+                } else if (req.flood_level === "Medium") {
+                    floodLevelColor = "var(--warning)";
+                } else {
+                    floodLevelColor = "var(--success)";
+                }
+
+                   if (req.current_status === "pending") {
+                    color = "var(--warning)";
+                } else if (req.current_status === "approved") {
+                    color = "var(--success)";
+                } else {
+                    color = "var(--danger)";
+                }
+
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
                     <td>${req.created_at}</td>
                     <td>${req.type_of_relief}</td>
-                    <td>${req.flood_level}</td>
-                    <td>${req.current_status}</td>
+                    <td  style="color: ${floodLevelColor}">${req.flood_level}</td>
+                    <td style="color: ${color}">${req.current_status}</td>
                 `;
                 tableBody.appendChild(tr);
             });

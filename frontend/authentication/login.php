@@ -10,8 +10,7 @@
                 </a>
       </div>
       <div class="mb-4 text-center">
-        <!-- <h1 class="brand-title">Aqua<span class="mb-3 brand-highlight">Relief</span></h1> -->
-                <p class="brand-subtitle">The Flood Relief Management System</p>
+                  <p class="brand-subtitle">The Flood Relief Management System</p>
       </div>
 
       <form>

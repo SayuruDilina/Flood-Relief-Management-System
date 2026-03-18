@@ -21,10 +21,10 @@
       $num_of_family_members=$data['num_of_family_members'];
       $flood_level=$data['flood_level'];
       $description=$data['description'];
-    //  $user_id=$data['user_id'];
+   
     
       if(empty($type_of_relief) || empty($devisional_secretariat) || empty($contact_number) || 
-        empty($num_of_family_members)  || empty($flood_level) || empty($description) || empty($address)
+        empty($num_of_family_members)  || empty($flood_level) || empty($address)
       ){
          echo json_encode([
               "status" => "error",
@@ -78,7 +78,7 @@
       $num_of_family_members=$data['num_of_family_members'];
       $flood_level=$data['flood_level'];
       $description=$data['description'];
-     // $user_id=$data['user_id'];
+     
 
 
     $sql="UPDATE relief_requests SET type_of_relief='$type_of_relief',
@@ -118,8 +118,7 @@
   }
   $user_id = $_SESSION["user_id"];
 
-   // $user_id = $_GET['user_id'];  
-
+  
     $sql="SELECT * FROM relief_requests WHERE user_id=$user_id";
     $result =$conn-> query($sql);
     if($result->num_rows>0){

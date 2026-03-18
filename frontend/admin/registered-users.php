@@ -115,6 +115,15 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <?php } ?>
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      totalUserCount();
+      recentlyRegisterdCount();
+      getAllUsers();
+    })
+    
+</script>
+
 
 <?php
 include '../common/footer.php';

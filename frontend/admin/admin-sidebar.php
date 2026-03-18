@@ -1,3 +1,6 @@
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
 
   <div class="container-fluid">
     <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse p-0">
@@ -10,23 +13,24 @@
         </div>
 
         <div class="nav-content mt-4">
-          <a href="./admin.php" class="sidebar-link">
+          <a href="./admin.php" class="sidebar-link <?php echo ($current_page == 'admin.php') ? 'active' : ''; ?>">
             <i class="fas fa-home me-2"></i> Overview
           </a>
 
-          <a href="./total-relief-requests.php" class="sidebar-link">
+          <a href="./total-relief-requests.php" class="sidebar-link <?php echo ($current_page == 'total-relief-requests.php') ? 'active' : ''; ?>">
             <i class="fas fa-hand-holding-medical me-2"></i> Relief Requests
           </a>
 
-          <a href="./registered-users.php" class="sidebar-link">
+          <a href="./registered-users.php" class="sidebar-link <?php echo ($current_page == 'registered-users.php') ? 'active' : ''; ?>">
             <i class="fas fa-users me-2"></i> Registered Users
           </a>
 
-          <a href="./system-report.php" class="sidebar-link">
+          <a href="./system-report.php" class="sidebar-link <?php echo ($current_page == 'system-report.php') ? 'active' : ''; ?>">
             <i class="fas fa-file-invoice me-2"></i> System Reports
           </a>
           
-          <a href="./emergency-alerts.php" class="sidebar-link"><i class="fas fa-bullhorn me-2"></i> Send Alerts
+          <a href="./emergency-alerts.php" class="sidebar-link <?php echo ($current_page == 'emergency-alerts.php') ? 'active' : ''; ?>">
+            <i class="fas fa-bullhorn me-2"></i> Send Alerts
           </a>
 
         </div>
