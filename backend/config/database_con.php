@@ -3,7 +3,7 @@
     $db_user="root";
     $db_pass="";
     $db_name="flood_relief_system";
-    $port="4306";
+    $port="3306";
     try{
         $conn=mysqli_connect($db_server,$db_user,$db_pass,$db_name,$port);
         
