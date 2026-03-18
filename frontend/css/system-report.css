@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    color: var(--text-dark);
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    align-items: center;
+}
+
+.h-divider {
+    border: none;
+    height: 2px;
+    background-color: var(--text-dark);
+}   
+
+.metric-card {
+    background: var(--white);
+    justify-content: center;
+    padding: 25px;
+    border-radius: 12px;
+    height: 100%;
+    max-height: 110px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+}
+
+.table-card {
+    background: var(--white);
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.badge {
+    padding: 0.5em 1em;
+    font-weight: 500;
+    border-radius: 50px;
+}
+
+.filter-select{
+    background-color: var(--bg-light);
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text-dark);
+}
+
+.btn-primary{
+    background-color: var(--primary-teal); border: none;
+}
