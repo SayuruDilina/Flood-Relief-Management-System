@@ -21,18 +21,28 @@ if($_SERVER['REQUEST_METHOD']=='PUT'){
 
      $sql = "UPDATE users SET  password='$hashedPassword' WHERE username='$username' AND NIC='$NIC'";
 
-    if($conn->query($sql)){
-      echo json_encode([
-              "status"=>"ok",
-              "message" =>"password updated successfully"
-          ]);
-             exit();
-    }else{
+   if($conn->query($sql)){
+    if($conn->affected_rows > 0){
+       
+        echo json_encode([
+            "status" => "ok",
+            "message" => "Password updated successfully"
+        ]);
+    } else {
+        
         echo json_encode([
             "status" => "error",
-            "message" => "Invalid credintials"
+            "message" => "Invalid credentials"
         ]);
-        exit();
     }
+    exit();
+} else {
+    
+    echo json_encode([
+        "status" => "error",
+        "message" => "Something went wrong"
+    ]);
+    exit();
+}
 
   }
