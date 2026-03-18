@@ -41,7 +41,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="row g-3 align-items-end">
             <div class="col-md-5 me-5">
                 <label class="form-label small fw-bold text-muted">FILTER BY AREA</label>
-                <select onchange="getReportFilterByArea()" id="district" class="filter-select border-0 shadow-sm"  id="districtFilter">
+                <select onchange="getReportFilterByArea()" id="district" id="districtFilter" class="filter-select border-0 shadow-sm"  >
                     <option value="">All Regions</option>
                     <option>Colombo</option>
                     <option>Gampaha</option>
@@ -134,6 +134,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <th>Request Type</th>
                         <th>Severity</th>
                         <th>Status</th>
+                        <th class="text-center">Reports</th>
                     </tr>
                 </thead>
                 <tbody id="reportTable">
@@ -174,13 +175,10 @@ if (session_status() === PHP_SESSION_NONE) {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    totalUserCount();
+ 
+     totalUserCount();
     highServeritySystemReports() ;
-    getAllRequestForSystemReports();
-    getAllFoodRequestCount();
-    getAllMedicineRequestCount();
-    getAllWaterRequestCount();
-    getALLShelterRequests();
+   getAllRequestForSystemReports();
     const districtFilter = document.getElementById("districtFilter");
     const reliefFilter = document.getElementById("reliefFilter");
    
@@ -212,6 +210,16 @@ document.addEventListener("DOMContentLoaded", function () {
  
 });
 
+document.addEventListener("DOMContentLoaded", async function () {
+
+    
+    
+    await getAllMedicineRequestCount();
+    await getAllWaterRequestCount();
+    await getALLShelterRequests();
+    await getAllFoodRequestCount();
+
+});
 
 </script> 
 

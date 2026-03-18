@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $type_of_relief = $_GET['type_of_relief'];
     $sqlRelief = "SELECT rr.user_id,
     rr.flood_level,
+    rr.current_status,
     u.fullname,
     rr.district,
     u.contact_number

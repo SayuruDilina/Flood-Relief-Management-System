@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     SELECT 
         rr.user_id,
         rr.type_of_relief,
+        rr.current_status,
         rr.flood_level,
         u.fullname,
         u.contact_number
