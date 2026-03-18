@@ -627,7 +627,7 @@ function mediumRequestCount() {
             console.log(data);
             const count = Math.round(data.total_cases / totalReqCount * 100);
             document.getElementById("mediumSeverity").innerText = count + "%";
-            document.getElementById("mediumSeverityBarWidth").style.width = count;
+            document.getElementById("mediumSeverityBarWidth").style.width = count+"%";
 
         })
 }
@@ -639,7 +639,7 @@ function lowSeverityCasesCount() {
             console.log(data);
             const count = Math.round(data.total_cases / totalReqCount * 100);
             document.getElementById("lowSeverity").innerText = count + "%";
-            document.getElementById("lowSeverityBar").style.width = count;
+            document.getElementById("lowSeverityBar").style.width = count+"%";
 
         })
 }
@@ -680,7 +680,7 @@ function highSeverityForReleifReq() {
 
             const count = Math.round(data.total_cases / totalReqCount * 100);
             document.getElementById("highSeverityBar").innerText = count + "%";
-            document.getElementById("highSeverityBarWidth").style.width = count;
+            document.getElementById("highSeverityBarWidth").style.width = count+"%";
 
         })
 }
@@ -712,6 +712,7 @@ function getAllReleifRequests() {
             const allRequestsTable = document.getElementById("allRequestsTable");
             allRequestsTable.innerHTML = "";
             let btnClass;
+            let floodLevelColor="";
             data.forEach(relief_request => {
                 if (relief_request.current_status === "pending") {
                     btnClass = "btn-pending";
@@ -720,12 +721,19 @@ function getAllReleifRequests() {
                 } else {
                     btnClass = "btn-reject";
                 }
+                if(relief_request.flood_level === "High") {
+                    floodLevelColor = "var(--danger)";
+                }else if(relief_request.flood_level === "Medium") {
+                    floodLevelColor = "var(--warning)";
+                }else{
+                    floodLevelColor = "var(--success)";
+                }
               
                 allRequestsTable.innerHTML += `
     <tr>
 
     <td>${relief_request.type_of_relief}</td>
-    <td>${relief_request.flood_level}</td>
+    <td style="color:${floodLevelColor}">${relief_request.flood_level}</td>
     <td>${relief_request.divisional_secretariat}</td>
     <td>${relief_request.gn_division}</td>
     <td>${relief_request.contact_person_name}</td>
@@ -1198,14 +1206,20 @@ function viewAlerts() {
             console.log(data);
             const alertTable = document.getElementById("alertTable");
             alertTable.innerHTML = "";
+            let alertStatusColor="";
 
             data.data.forEach(alert => {
+                if(alert.status === "active"){
+                    alertStatusColor = "var(--blue)";
+                }else{
+                    alertStatusColor = "var(--text-dark)";
+                }
                 alertTable.innerHTML += `
                     <tr>
+                     <td>${alert.createDate}</td>
                         <td>${alert.message}</td>
-                        <td>${alert.createDate}</td>
-                        <td>
-                          <span class="badge rounded-pill text-bg px-3">${alert.status}</span>
+                               <td>
+                          <span style="background-color:${alertStatusColor}" class="badge rounded-pill text-bg px-3">${alert.status}</span>
                           </td>
                        
                         <td><button type="button" onclick="inactiveAlert(${alert.id})" value="deactivate" class="btn btn-stop">Stop</button></td>
