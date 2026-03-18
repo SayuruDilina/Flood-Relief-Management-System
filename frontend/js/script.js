@@ -807,15 +807,34 @@ function getReportFilterByArea() {
             document.getElementById("shelterCount").innerText = data.total_shelter_request;
             const reportTable = document.getElementById("reportTable");
             reportTable.innerHTML = "";
+            let floodLevelColor = "";
+            let color = "";
             data.relief_requests.forEach(relief_request => {
+                if (relief_request.current_status === "pending") {
+                    color = "var(--warning)";
+                } else if (relief_request.current_status === "approved") {
+                    color = "var(--success)";
+                } else {
+                    color = "var(--danger)";
+                }
+
+                if (relief_request.flood_level === "High") {
+                    floodLevelColor = "var(--danger)";
+                } else if (relief_request.flood_level === "Medium") {
+                    floodLevelColor = "var(--warning)";
+                } else {
+                    floodLevelColor = "var(--success)";
+                }
+                
                 reportTable.innerHTML += `
             <tr data-district="Colombo" data-relief="Food" data-severity="High">
     <td>${relief_request.user_id}</td>
     <td><strong>${relief_request.fullname}</strong></td>
     <td>${district}</td>
     <td>${relief_request.type_of_relief}</td>
-    <td><span class="badge bg-warning">${relief_request.flood_level}</span></td>
-    <td class="text-end">
+    <td><span style="color:${floodLevelColor}">${relief_request.flood_level}</span></td>
+           <td style="color:${color}">${relief_request.current_status}</td>
+    <td class="text-center">
             <button onclick="navigate(${relief_request.user_id})" type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 view-report-btn">
                 View Report
             </button>
@@ -869,16 +888,34 @@ function getReportFilterByRelief() {
 
             const reportTable = document.getElementById("reportTable");
             reportTable.innerHTML = "";
+            let color = "";
+            let floodLevelColor = "";
             data.relief_requests.forEach(relief_request => {
+                                if (relief_request.current_status === "pending") {
+                    color = "var(--warning)";
+                } else if (relief_request.current_status === "approved") {
+                    color = "var(--success)";
+                } else {
+                    color = "var(--danger)";
+                }
+
+                if (relief_request.flood_level === "High") {
+                    floodLevelColor = "var(--danger)";
+                } else if (relief_request.flood_level === "Medium") {
+                    floodLevelColor = "var(--warning)";
+                } else {
+                    floodLevelColor = "var(--success)";
+                }
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
         <td>${relief_request.user_id}</td>
         <td><strong>${relief_request.fullname}</strong></td>
         <td>${relief_request.district}</td>
         <td>${type_of_relief}</td>
-        <td><span class="badge bg-warning">${relief_request.flood_level}</span></td>
-        <td class="text-end">
-            <button type="button" onclick="getUserReports(${relief_request.user_id})" class="btn btn-sm btn-outline-primary rounded-pill px-3 view-report-btn">
+        <td><span style="color:${floodLevelColor}">${relief_request.flood_level}</span></td>
+                <td style="color:${color}">${relief_request.current_status}</td>
+       <td class="text-center">
+            <button onclick="navigate(${relief_request.user_id})" type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 view-report-btn">
                 View Report
             </button>
         </td>
@@ -1028,8 +1065,12 @@ function getAllRequestForSystemReports() {
       <td>${relief_request.type_of_relief}</td>
           <td style="color:${floodLevelColor}; ">${relief_request.flood_level}</td>
         <td style="color:${color}; font-weight:bold;">${relief_request.current_status}</td>
-    
-    
+    <td class="text-center">
+            <button onclick="navigate(${relief_request.user_id})" type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 view-report-btn">
+                View Report
+            </button>
+        </td>
+   
    
          
      </tr>
@@ -1038,40 +1079,51 @@ function getAllRequestForSystemReports() {
             })
         })
 }
-function getAllFoodRequestCount() {
-    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_food_req_count.php")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            document.getElementById("foodCount").innerHTML = data.total_flood_count;
-        })
+async function getAllFoodRequestCount() {
+    try {
+        const response = await fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_food_req_count.php");
+        const data = await response.json();
+
+        console.log(data);
+        document.getElementById("foodCount").innerHTML = data.total_flood_count || 0;
+
+    } catch (err) {
+        console.error(err);
+        document.getElementById("foodCount").innerHTML = 0;
+    }
 }
 
-function getAllMedicineRequestCount() {
-    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_medicine_req_count.php")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            document.getElementById("medicineCount").innerHTML = data.total_medicine_count;
-        })
+async function getAllMedicineRequestCount() {
+    try {
+        const res = await fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_medicine_req_count.php");
+        const data = await res.json();
+
+        document.getElementById("medicineCount").innerHTML = data.total_medicine_count || 0;
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-function getAllWaterRequestCount() {
-    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_water_req_count.php")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            document.getElementById("waterCount").innerHTML = data.total_water_count;
-        })
+async function getAllWaterRequestCount() {
+    try {
+        const res = await fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_water_req_count.php");
+        const data = await res.json();
+
+        document.getElementById("waterCount").innerHTML = data.total_water_count || 0;
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-function getALLShelterRequests() {
-    fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_shelter_req_count.php")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            document.getElementById("shelterCount").innerHTML = data.total_Shelter_count;
-        })
+async function getALLShelterRequests() {
+    try {
+        const res = await fetch("http://localhost/flood-Relief-Management-System/backend/system_reports/system_shelter_req_count.php");
+        const data = await res.json();
+
+        document.getElementById("shelterCount").innerHTML = data.total_Shelter_count || 0;
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 function searchRequestByNIC() {
